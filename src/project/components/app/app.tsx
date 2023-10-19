@@ -1,8 +1,9 @@
-import MainPage from '../../pages/main-page/main-page';
+import { MainPage } from '../../pages/main-page/main-page';
+import { RentCount } from '../../const/const';
 
 function App() {
   return (
-    <MainPage />
+    <MainPage props={RentCount.count} />
   );
 }
 

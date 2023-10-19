@@ -1,4 +1,5 @@
 
+
 function PlaceCardComponent() {
   return (
     <article className="cities__card place-card">
