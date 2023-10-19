@@ -1,5 +1,5 @@
 import PlaceCardComponent from '../../components/app/place-card/place-card';
-import { placeCountArr } from '../../const/const';
+import { placeCountArr } from '../../utils/utils';
 
 type MainPageProps = {
   props: number;

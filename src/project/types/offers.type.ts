@@ -1,4 +1,4 @@
-export type OffersProps = Root2[]
+export type OffersProps = Root2[];
 
 export interface Root2 {
   bedrooms: number;
@@ -42,3 +42,4 @@ export interface Location2 {
   longitude: number;
   zoom: number;
 }
+
