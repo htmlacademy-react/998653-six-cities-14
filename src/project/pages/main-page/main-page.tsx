@@ -1,4 +1,4 @@
-import PlaceCardComponent from '../../components/app/place-card/place-card';
+import PlaceCardComponent from '../../components/place-card/place-card';
 import { placeCountArr } from '../../utils/utils';
 
 type MainPageProps = {
