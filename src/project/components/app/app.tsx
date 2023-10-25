@@ -1,6 +1,8 @@
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { AppRoute } from '../../const/const';
+
+import { AppRoute, AuthorizationStatus } from '../../const/const';
+import { PrivateRoute } from '../../components/private-router/private-router';
 import { MainPage } from '../../pages/main-page/main-page';
 import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
@@ -14,7 +16,12 @@ function App() {
       <Routes>
         <Route path={AppRoute.Main} element={<MainPage props={RentQuantity.quantity} />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path={AppRoute.Favorites} element={<FavoritePage />} />
+        <Route path={AppRoute.Favorites} element={
+          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <FavoritePage />
+          </PrivateRoute>
+        }
+        />
         <Route path={AppRoute.Offer} element={<OfferPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
