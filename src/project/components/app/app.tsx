@@ -1,8 +1,8 @@
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { HelmetProvider } from 'react-helmet-async';
 
 import { AppRoute, AuthorizationStatus } from '../../const/const';
-import { PrivateRoute } from '../../components/private-router/private-router';
+import { ProtectedRoute } from '../protected-route/protected-route';
 import { MainPage } from '../../pages/main-page/main-page';
 import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
@@ -12,20 +12,47 @@ import { RentQuantity } from '../../const/const';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Main} element={<MainPage props={RentQuantity.quantity} />} />
-        <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path={AppRoute.Favorites} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-            <FavoritePage />
-          </PrivateRoute>
-        }
-        />
-        <Route path={AppRoute.Offer} element={<OfferPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<MainPage props={RentQuantity.quantity} />}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={
+              <ProtectedRoute
+                restrictedFor={AuthorizationStatus.Auth}
+                redirectTo={AppRoute.Main}
+              >
+                <LoginPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <ProtectedRoute
+                restrictedFor={AuthorizationStatus.NoAuth}
+                redirectTo={AppRoute.Login}
+              >
+                <FavoritePage />
+              </ProtectedRoute >
+            }
+          />
+          <Route
+            path={`${AppRoute.Offer}/:offerId`} //косяк
+            element={<OfferPage />}
+          />
+          <Route
+            path='*'
+            element={<NotFoundPage />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
+
   );
 }
 
