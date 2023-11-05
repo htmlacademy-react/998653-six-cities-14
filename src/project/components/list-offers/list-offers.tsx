@@ -1,23 +1,47 @@
 import PlaceCardComponent from '../../components/place-card/place-card';
-import { OffersProps } from '../../types/Offers.type';
+// import { OffersProps } from '../../types/Offers.type';
+import { Offer } from '../../types/Offers.type';
+import { mockedOffer } from '../../mocks/offers';
 
-type ListOffersComponentProp ={
-  offers: OffersProps;
+// type ListOffersComponentProp ={
+//   offers: OffersProps;
+// }
+
+type ListOffersComponentProps = {
+  offer: Offer;
 }
 
-function ListOffersComponent ({ offers }: ListOffersComponentProp) {
+function ListOffersComponent ({ offer }: ListOffersComponentProps) {
+  //как вычленить offersItem из offer?
 
-  return(
+  // const offersByCity: Record<string, OffersProps> = {};
+
+  // for(const offersItem of offers) {
+  //   const city = offersItem.city.name;
+  //   if (city in offersByCity) {
+  //     offersByCity[city].push(offersItem);
+  //     continue;
+  //   }
+  //   offersByCity[city] = [offersItem];
+  //   continue;
+  // }
+
+  // return(
+  //   <div className="cities__places-list places__list tabs__content">
+  //     {offers.map((offersItem) => (
+  //       <PlaceCardComponent
+  //         offer={offersItem}
+  //         key={offersItem.id}
+  //       />
+  //     ))}
+  //   </div>
+  // );
+  return (
     <div className="cities__places-list places__list tabs__content">
-      {/* {offers.map((offer) => {
-        <PlaceCardComponent
-          {...offer}
-          key={offer.id}
-        />;
-      })} */}
-      <PlaceCardComponent offer={offers[0]} />
+      <PlaceCardComponent offer={mockedOffer}/>
     </div>
   );
+
 }
 
 export { ListOffersComponent };

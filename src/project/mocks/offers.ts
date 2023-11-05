@@ -15,7 +15,7 @@ const moskHost = ():Host => ({
   name: faker.internet.userName()
 });
 
-const mockOffer = ():Offer => ({
+export const mockOffer = ():Offer => ({
   bedrooms: faker.number.int({ min: 1, max: 5 }),
   city: {
     location: mockLocation(),
@@ -37,7 +37,7 @@ const mockOffer = ():Offer => ({
   type: faker.helpers.arrayElement(OFFER_TYPES),
 });
 
-
+export const mockedOffer = mockOffer();
 export const mockedOffers = Array.from({ length: 50 }, () => mockOffer());
 
 

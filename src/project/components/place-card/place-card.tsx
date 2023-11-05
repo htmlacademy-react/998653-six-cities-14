@@ -1,5 +1,6 @@
 import { Offer } from '../../types/Offers.type';
 
+
 type PlaceCardComponentProps = {
   offer: Offer;
 }
