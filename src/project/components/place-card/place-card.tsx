@@ -1,5 +1,11 @@
+import { Offer } from '../../types/Offers.type';
 
-function PlaceCardComponent() {
+type PlaceCardComponentProps = {
+  offer: Offer;
+}
+
+function PlaceCardComponent({ offer }: PlaceCardComponentProps) {
+
   return (
     <article className="cities__card place-card">
       <div className="place-card__mark">

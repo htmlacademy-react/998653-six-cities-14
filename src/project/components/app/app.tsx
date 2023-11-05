@@ -8,22 +8,25 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { RentQuantity } from '../../const/const';
 import { OffersProps } from '../../types/Offers.type';
 
 type AppProps = {
   offers: OffersProps;
 }
-function App(props: AppProps) {
 
-  const{offers} = props;
+function App(offers: AppProps) {
+
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage props={RentQuantity.quantity} />}
+            element={
+              <MainPage
+                offers={offers}
+              />
+            }
           />
           <Route
             path={AppRoute.Login}
