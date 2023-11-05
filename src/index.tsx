@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './project/components/app/app';
+import {mockedOffers} from './project/mocks/offers';
+
+console.log(mockedOffers);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

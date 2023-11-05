@@ -15,4 +15,21 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export { RentQuantity, AppRoute, AuthorizationStatus };
+const CITIES = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+] as const;
+
+const OFFER_TYPES = [
+  'Private Room',
+  'Apartament',
+  'House',
+  'Hotel',
+  'Cursed old house',
+] as const;
+
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES };
