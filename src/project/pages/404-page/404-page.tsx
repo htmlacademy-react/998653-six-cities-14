@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.body`
   background-color: papayawhip;
@@ -17,7 +18,7 @@ const Description = styled.p`
   text-align: center;
 `;
 
-const Link = styled.a`
+const GoToMain = styled.span`
   color: blue;
   text-decoration: underline;
 `;
@@ -27,7 +28,9 @@ function NotFoundPage() {
     <Wrapper>
       <Title>404.</Title>
       <Description>Тhis page not found</Description>
-      <Link href="/">Go to main page </Link>
+      <Link to="/">
+        <GoToMain>Go to main page</GoToMain>
+      </Link>
     </Wrapper>
   );
 }
