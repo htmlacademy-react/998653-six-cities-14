@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { OffersProps } from '../../types/Offers.type';
 import { FavoriteCard } from '../../components/favorite-card/favorite-card';
-import { mockedOffer } from '../../mocks/offers';
 import { Link } from 'react-router-dom';
 
 type FavoritePageProps ={
@@ -30,7 +29,9 @@ function FavoritePage({offers}: FavoritePageProps){
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoriteCard offer={mockedOffer} />
+                  {offers.map((offer) => (
+                    <FavoriteCard offer={offer} key={offer.id}/>
+                  ))}
                 </div>
               </li>
             </ul>
