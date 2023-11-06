@@ -29,6 +29,12 @@ function App(offers: AppProps) {
             }
           />
           <Route
+            path={AppRoute.Favorites}
+            element={
+              <FavoritePage offers={offers}/>
+            }
+          />
+          <Route
             path={AppRoute.Login}
             element={
               <ProtectedRoute
@@ -39,17 +45,20 @@ function App(offers: AppProps) {
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
                 restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Login}
               >
-                <FavoritePage />
+                <FavoritePage
+                  offers={offers}
+                />
               </ProtectedRoute >
             }
-          />
+          /> */}
+
           <Route
             path={`${AppRoute.Offer}/:offerId`} //косяк
             element={<OfferPage />}
