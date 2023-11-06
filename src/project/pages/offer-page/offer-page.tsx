@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { Offer } from '../../types/Offers.type';
 import { ReviewForm } from '../../components/review-form/review-form';
+import {reviews} from '../../mocks/rewiews';
 
 type OfferPageProps = {
   offer: Offer;
@@ -105,7 +106,7 @@ function OfferPage({offer}: OfferPageProps) {
                   </p>
                 </div>
               </div>
-              <ReviewForm reviews={rewiews}/>
+              <ReviewForm reviews={reviews}/>
             </div>
           </div>
 
