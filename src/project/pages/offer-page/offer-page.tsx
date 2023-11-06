@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { Offer } from '../../types/Offers.type';
-import { ReviewForm } from '../../components/review-form/review-form';
-import {reviews} from '../../mocks/rewiews';
+import { ReviewList } from '../../components/review-list/review-list';
+import { mockedReviews } from '../../mocks/rewiews';
 
 type OfferPageProps = {
   offer: Offer;
@@ -106,7 +106,7 @@ function OfferPage({offer}: OfferPageProps) {
                   </p>
                 </div>
               </div>
-              <ReviewForm reviews={reviews}/>
+              <ReviewList reviews={mockedReviews}/>
             </div>
           </div>
 

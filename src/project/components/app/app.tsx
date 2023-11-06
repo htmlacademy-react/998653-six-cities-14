@@ -8,15 +8,9 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { OffersProps } from '../../types/Offers.type';
-import { mockedOffer } from '../../mocks/offers';
+import { mockedOffers, mockedOffer} from '../../mocks/offers';
 
-type AppProps = {
-  offers: OffersProps;
-}
-
-
-function App(offers: AppProps) {
+function App() {
 
   return (
     <HelmetProvider>
@@ -26,7 +20,7 @@ function App(offers: AppProps) {
             path={AppRoute.Main}
             element={
               <MainPage
-                offers={offers}
+                offers={mockedOffers}
               />
             }
           />
@@ -49,7 +43,7 @@ function App(offers: AppProps) {
                 redirectTo={AppRoute.Login}
               >
                 <FavoritePage
-                  offers={offers}
+                  offers={mockedOffers}
                 />
               </ProtectedRoute >
             }
@@ -59,7 +53,7 @@ function App(offers: AppProps) {
             path={`${AppRoute.Offer}/:offerId`} //косяк
             element={
               <OfferPage
-                offer = {mockedOffer} // заменить потом
+                offer = {mockedOffer} // заменить потом на все оfeры
               />
             }
           />
