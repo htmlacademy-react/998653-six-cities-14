@@ -9,10 +9,12 @@ import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { OffersProps } from '../../types/Offers.type';
+import { mockedOffer } from '../../mocks/offers';
 
 type AppProps = {
   offers: OffersProps;
 }
+
 
 function App(offers: AppProps) {
 
@@ -29,27 +31,21 @@ function App(offers: AppProps) {
             }
           />
           <Route
-            path={AppRoute.Favorites}
-            element={
-              <FavoritePage offers={offers}/>
-            }
-          />
-          <Route
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth}
+                restrictedFor={AuthorizationStatus.Auth} // потом поненять на No
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />
               </ProtectedRoute>
             }
           />
-          {/* <Route
+          <Route
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.NoAuth}
+                restrictedFor={AuthorizationStatus.Auth}
                 redirectTo={AppRoute.Login}
               >
                 <FavoritePage
@@ -57,11 +53,15 @@ function App(offers: AppProps) {
                 />
               </ProtectedRoute >
             }
-          /> */}
+          />
 
           <Route
             path={`${AppRoute.Offer}/:offerId`} //косяк
-            element={<OfferPage />}
+            element={
+              <OfferPage
+                offer = {mockedOffer} // заменить потом
+              />
+            }
           />
           <Route
             path='*'
