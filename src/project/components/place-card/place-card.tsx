@@ -16,8 +16,8 @@ function PlaceCardComponent({ offer, setState }: PlaceCardComponentProps) {
   return (
     <article
       className="cities__card place-card"
-      onMouseOver={(evt: MouseEvent<HTMLElement>) => {
-        evt.target.style.background = 'pink'; //для проверки
+      onMouseOver={(evt) => {
+        evt.preventDefault();
         setState();
       }}
     >
