@@ -1,17 +1,16 @@
 import PlaceCardComponent from '../../components/place-card/place-card';
-// import { OffersProps } from '../../types/Offers.type';
-import { Offer } from '../../types/Offers.type';
+import { OffersProps } from '../../types/Offers.type';
 import { mockedOffer } from '../../mocks/offers';
+import { useState } from 'react';
 
-// type ListOffersComponentProp ={
-//   offers: OffersProps;
-// }
-
-type ListOffersComponentProps = {
-  offer: Offer;
+type ListOffersComponentProps ={
+  offers: OffersProps;
 }
 
-function ListOffersComponent ({ offer }: ListOffersComponentProps) {
+
+function ListOffersComponent ({ offers }: ListOffersComponentProps) {
+  const[isActive, setActive] = useState(false);
+
   //как вычленить offersItem из offer?
 
   // const offersByCity: Record<string, OffersProps> = {};
@@ -38,7 +37,15 @@ function ListOffersComponent ({ offer }: ListOffersComponentProps) {
   // );
   return (
     <div className="cities__places-list places__list tabs__content">
-      <PlaceCardComponent offer={mockedOffer}/>
+      {isActive && (
+        <p>Карточка активна</p>
+      )}
+      <PlaceCardComponent
+        offer={mockedOffer}
+        setState={
+          ()=> setActive((prevState) => !prevState)
+        }
+      />
     </div>
   );
 
