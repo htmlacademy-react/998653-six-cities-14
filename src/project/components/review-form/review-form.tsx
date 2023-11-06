@@ -1,3 +1,4 @@
+import { Comment } from '../../types/Comments.type';
 
 const dateFormatter = new Intl.DateTimeFormat(
   'en-Us',
@@ -7,9 +8,13 @@ const dateFormatter = new Intl.DateTimeFormat(
   }
 );
 
-function ReviewForm ({reviews}) {
+type ReviewFormProps ={
+  reviews: Comment;
+};
 
-  const {comment, date, id, rating, user} = reviews;
+function ReviewForm ({reviews}: ReviewFormProps) {
+
+  const { id, user} = reviews;
 
   return (
     <section className="offer__reviews reviews">
@@ -38,9 +43,6 @@ function ReviewForm ({reviews}) {
               </div>
             </div>
             <p className="reviews__text">
-                  Link quiet cozy and picturesque that hides behind Link Link river by
-                  the unique lightness of Amsterdam. The building is green and
-                  from 18th century.
             </p>
             <time className="reviews__time" dateTime="2019-04-24">
               {dateFormatter.format(new Date())}
