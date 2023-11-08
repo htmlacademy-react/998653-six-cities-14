@@ -24,7 +24,7 @@ export const mockOffer = ():Offer => ({
   description: faker.lorem.sentences(2),
   goods: faker.lorem.words(5).split(' '),
   host: moskHost(),
-  id: faker.number.int({ min: 1, max: 100 }),
+  id: faker.string.uuid(),
   images: Array.from({ length: faker.number.int({max: 12, min: 0 }) }, () => faker.image.urlLoremFlickr ({category: 'apartament'})),
   isFavorite: faker.datatype.boolean(),
   isPremium: faker.datatype.boolean(),

@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { OffersProps } from '../../types/Offers.type';
 import { ReviewList } from '../../components/review-list/review-list';
 import { mockedReviews } from '../../mocks/rewiews';
 
+
 type OfferPageProps = {
   offers: OffersProps;
 }
 
 function OfferPage({offers}: OfferPageProps) {
+  const { offerId } = useParams();
+  const offer = offers.find((item) => item.id === offerId);
   const { isPremium, images, title, rating, type, bedrooms, maxAdults, goods, host } = offer;
 
   return (
