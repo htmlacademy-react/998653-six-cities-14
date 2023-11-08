@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 type PlaceCardComponentProps = {
   offer: Offer;
 } & {
-  setState?: () => string; // правильно?
+  handleMouseOver: () => void; //
 }
 
-function PlaceCardComponent({ offer, setState }: PlaceCardComponentProps) {
+function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps) {
 
   const { isPremium, previewImage, price, type, title, id } = offer;
   const href = `/offer/${id}`;
@@ -16,10 +16,7 @@ function PlaceCardComponent({ offer, setState }: PlaceCardComponentProps) {
   return (
     <article
       className="cities__card place-card"
-      onMouseOver={(evt) => {
-        evt.preventDefault();
-        setState();
-      }}
+      onMouseOver={handleMouseOver}
     >
       {isPremium && (
         <div className="place-card__mark">

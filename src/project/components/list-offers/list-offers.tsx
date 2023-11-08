@@ -19,7 +19,7 @@ function ListOffersComponent ({ offers }: ListOffersComponentProps) {
         <PlaceCardComponent
           offer={offersItem}
           key={offersItem.id}
-          setState={
+          handleMouseOver={
             ()=> setActive((prevState) => !prevState)
           }
         />

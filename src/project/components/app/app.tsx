@@ -8,9 +8,14 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { mockedOffers, mockedOffer} from '../../mocks/offers';
+import { mockedOffer} from '../../mocks/offers';
+import { OffersProps } from '../../types/Offers.type';
 
-function App() {
+type AppProps = {
+  offers: OffersProps;
+}
+
+function App({offers}: AppProps) {
 
   return (
     <HelmetProvider>
@@ -20,7 +25,7 @@ function App() {
             path={AppRoute.Main}
             element={
               <MainPage
-                offers={mockedOffers}
+                offers={offers}
               />
             }
           />
@@ -43,7 +48,7 @@ function App() {
                 redirectTo={AppRoute.Login}
               >
                 <FavoritePage
-                  offers={mockedOffers}
+                  offers={offers}
                 />
               </ProtectedRoute >
             }
