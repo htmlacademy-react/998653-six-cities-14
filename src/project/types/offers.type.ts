@@ -6,7 +6,7 @@ export interface Offer{
   description: string;
   goods: string[];
   host: Host;
-  id: string;
+  id: number;
   images: string[];
   isFavorite: boolean;
   isPremium: boolean;
