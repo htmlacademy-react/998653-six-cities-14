@@ -9,16 +9,14 @@ type ListOffersComponentProps ={
 
 
 function ListOffersComponent ({ offers }: ListOffersComponentProps) {
-  const[isActive, setActive] = useState(false);
+  const[activeOffer, setActive] = useState(false);
 
   return(
     <div className="cities__places-list places__list tabs__content">
-      {isActive && (
-        <p>Карточка активна</p>)}
-      {offers.map((offersItem) => (
+      {offers.map((offer) => (
         <PlaceCardComponent
-          offer={offersItem}
-          key={offersItem.id}
+          offer={offer}
+          key={offer.id}
           handleMouseOver={
             ()=> setActive((prevState) => !prevState)
           }

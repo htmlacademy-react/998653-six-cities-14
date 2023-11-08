@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
-import { Offer } from '../../types/Offers.type';
+import { OffersProps } from '../../types/Offers.type';
 import { ReviewList } from '../../components/review-list/review-list';
 import { mockedReviews } from '../../mocks/rewiews';
 
 type OfferPageProps = {
-  offer: Offer;
+  offers: OffersProps;
 }
 
-function OfferPage({offer}: OfferPageProps) {
+function OfferPage({offers}: OfferPageProps) {
   const { isPremium, images, title, rating, type, bedrooms, maxAdults, goods, host } = offer;
 
   return (

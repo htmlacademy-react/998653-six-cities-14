@@ -1,5 +1,6 @@
 import { Offer } from '../../types/Offers.type';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const/const';
 
 type PlaceCardComponentProps = {
   offer: Offer;
@@ -10,7 +11,6 @@ type PlaceCardComponentProps = {
 function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps) {
 
   const { isPremium, previewImage, price, type, title, id } = offer;
-  const href = `/offer/${id}`;
 
 
   return (
@@ -24,7 +24,7 @@ function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps)
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -32,7 +32,7 @@ function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps)
             height={200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -54,7 +54,7 @@ function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps)
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={href}>{title}</Link>
+          <Link to={`${AppRoute.Offer}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

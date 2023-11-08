@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ListOffersComponent } from '../../components/list-offers/list-offers';
 import { OffersProps } from '../../types/Offers.type';
 
@@ -6,7 +7,6 @@ type CitiesPros = {
 }
 
 function Cities ({ offers }: CitiesPros) {
-
   return (
     <div className="cities">
       <div className="cities__places-container container">
