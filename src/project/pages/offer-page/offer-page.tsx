@@ -115,7 +115,12 @@ function OfferPage({offers}: OfferPageProps) {
                   </p>
                 </div>
               </div>
-              <ReviewList reviews={mockedReviews}/>
+              <section className="offer__reviews reviews">
+                <h2 className="reviews__title">
+                 Reviews · <span className="reviews__amount">1</span>
+                </h2>
+                <ReviewList reviews={mockedReviews}/>
+              </section>
             </div>
           </div>
 

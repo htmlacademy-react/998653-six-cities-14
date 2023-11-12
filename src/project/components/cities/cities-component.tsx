@@ -3,11 +3,12 @@ import {OfferPreviewProps, offersByCityProps } from '../../types/Offers.type';
 import { useState } from 'react';
 
 type CitiesProps = {
+  offers: OfferPreviewProps;
   offersByCity: offersByCityProps;
   setActive: () => void;
 }
 
-function Cities ({ offersByCity, setActive,  }: CitiesProps) {
+function Cities ({offers, offersByCity, setActive }: CitiesProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState(null);
 
   const handleCardHover = (offerId: OfferPreviewProps['id'] | null) => {
@@ -20,7 +21,7 @@ function Cities ({ offersByCity, setActive,  }: CitiesProps) {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          {/* <b className="places__found"> {offersByCity[0].lengh} places to stay in {''}</b> */}
+          <b className="places__found"> {offers.length} places to stay in {''}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>

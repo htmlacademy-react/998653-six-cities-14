@@ -8,7 +8,10 @@ type HeaderProps ={
   isAuthorized?: boolean;
 }
 
-function Header({hideNavigation, isAuthorized}: HeaderProps) {
+function Header({
+  hideNavigation = false,
+  isAuthorized = false
+}: HeaderProps) {
 
   const { pathname } = useLocation();
 
@@ -34,7 +37,7 @@ function Header({hideNavigation, isAuthorized}: HeaderProps) {
               height="{41}"
             />
           </div>
-          { hideNavigation && (
+          { !hideNavigation && (
             <nav className="header__nav">
               <ul className="header__nav-list">
                 {isAuthorized ? (

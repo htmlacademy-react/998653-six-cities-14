@@ -45,31 +45,34 @@ function MainPage({ offers } : MainPageProps) {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {cities.map((city) => (
-                <li
-                  className="locations__item"
-                  key={city}
-                >
-                  <Link
-                    className={classNames(
-                      'locations__item-link ',
-                      'tabs__item',
-                      {
-                        'tabs__item--active' :city === selectedCity,
-                      }
-                    )}
-                    to={`#${city.toLowerCase()}`}
-                    onClick={() => setSelectedCity(city)}
+              {cities
+                .slice(0, 10)
+                .map((city) => (
+                  <li
+                    className="locations__item"
+                    key={city}
                   >
-                    <span>{city}</span>
-                  </Link>
-                </li>
+                    <Link
+                      className={classNames(
+                        'locations__item-link ',
+                        'tabs__item',
+                        {
+                          'tabs__item--active' :city === selectedCity,
+                        }
+                      )}
+                      to={`#${city.toLowerCase()}`}
+                      onClick={() => setSelectedCity(city)}
+                    >
+                      <span>{city}</span>
+                    </Link>
+                  </li>
               ))}
 
             </ul>
           </section>
         </div>
         <Cities
+          offers = {offers}
           offersByCity = { offersByCity }
           setActive={ setOffer }
         />

@@ -1,5 +1,6 @@
 import {Fragment, ChangeEvent, useState } from 'react';
 import { MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH } from '../../const/const';
+import { CommentsProps } from '../../types/Comments.type';
 
 const RatingMap = {
   '5': 'perfect',
@@ -9,14 +10,19 @@ const RatingMap = {
   '1': 'terribly'
 };
 
-function ReviewForm() {
+type ReviewFormProps = {
+  isAuthorized: boolean;
+};
+
+function ReviewForm({ isAuthorized }: ReviewFormProps) {
   const [rating, setRating] = useState('');
   const [comment, setComment] = useState('');
 
   const isValid: boolean =
   comment.length >= MIN_COMMENTS_LENGTH &&
   comment.length <= MAX_COMMENTS_LENGTH &&
-  rating !== '';
+  rating !== '' &&
+  isAuthorized !== false;
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
@@ -77,7 +83,7 @@ function ReviewForm() {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!isValid} //не сработало
+          disabled={!isValid}
         >
             Submit
         </button>
