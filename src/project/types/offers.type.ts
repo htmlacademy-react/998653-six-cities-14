@@ -1,39 +1,52 @@
-export type OffersProps = Offer[];
+type OffersProps = Offer[];
+type OfferPreviewProps = OfferPreview[];
+type OfferProp = Offer;
 
-export interface Offer{
+type Offer = OfferPreview & {
   bedrooms: number;
-  city: City;
   description: string;
   goods: string[];
   host: Host;
-  id: string;
   images: string[];
-  isFavorite: boolean;
-  isPremium: boolean;
-  location: Location;
   maxAdults: number;
-  previewImage: string;
-  price: number;
-  rating: number;
-  title: string;
-  type: string;
 }
 
-export interface City {
+type OfferPreview = {
+  city:{
+		name: string;
+		location: Location;
+	};
+	id: string;
+	isFavorite: boolean;
+	isPremium: boolean;
+	location: Location;
+	previewImage: string;
+	price: number;
+	rating: number;
+	title: string;
+	type: string;
+}
+
+type City = {
   location: Location;
   name: string;
 }
 
-export interface Location {
+type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-export interface Host {
+type Host = {
   avatarUrl: string;
   id: number;
   isPro: boolean;
   name: string;
 }
 
+type offersByCityProps ={
+  offersByCity: Record<string, OfferPreviewProps>;
+}
+
+export type { OffersProps, OfferPreviewProps, OfferProp, Host, Location, City, offersByCityProps};

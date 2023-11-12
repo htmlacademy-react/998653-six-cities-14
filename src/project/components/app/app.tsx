@@ -57,7 +57,7 @@ function App({offers}: AppProps) {
             path={`${AppRoute.Offer}/:offerId`} //косяк
             element={
               <OfferPage
-                offers = {offers} // заменить потом на все оfeры
+                offers = {offers}
               />
             }
           />

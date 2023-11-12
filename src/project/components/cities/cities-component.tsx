@@ -1,18 +1,26 @@
+import { PlaceCardComponent } from '../../components/place-card/place-card';
+import {OfferPreviewProps, offersByCityProps } from '../../types/Offers.type';
 import { useState } from 'react';
-import { ListOffersComponent } from '../../components/list-offers/list-offers';
-import { OffersProps } from '../../types/Offers.type';
 
-type CitiesPros = {
-  offers: OffersProps;
+type CitiesProps = {
+  offersByCity: offersByCityProps;
+  setActive: () => void;
 }
 
-function Cities ({ offers }: CitiesPros) {
+function Cities ({ offersByCity, setActive,  }: CitiesProps) {
+  const [hoveredOfferId, setHoveredOfferId] = useState(null);
+
+  const handleCardHover = (offerId: OfferPreviewProps['id'] | null) => {
+    setHoveredOfferId(offerId);
+  };
+
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found"> {offers.length} places to stay in Amsterdam</b>
+          {/* <b className="places__found"> {offersByCity[0].lengh} places to stay in {''}</b> */}
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -39,7 +47,15 @@ function Cities ({ offers }: CitiesPros) {
               </li>
             </ul>
           </form>
-          <ListOffersComponent offers ={offers}/>
+          <div className="cities__places-list places__list tabs__content">
+            {offers.map((offer) => (
+              <PlaceCardComponent
+                offer={offer}
+                key={offer.id}
+                onCardHover={handleCardHover}
+              />
+            ))}
+          </div>
         </section>
         <div className="cities__right-section">
           <section className="cities__map map" />

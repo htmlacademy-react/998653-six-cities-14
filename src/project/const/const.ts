@@ -6,7 +6,8 @@ enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = '/offer'
+  Offer = '/offer',
+  NotFound ='/404'
 }
 
 enum AuthorizationStatus {
@@ -32,4 +33,17 @@ const OFFER_TYPES = [
   'Cursed old house',
 ] as const;
 
-export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES };
+const MAX_COMMENTS_LENGTH = 1024;
+const MIN_COMMENTS_LENGTH = 12;
+
+const CityMap = {
+  Paris: 'Paris',
+  Cologne: 'Cologne' ,
+  Brussels: 'Cologne',
+  Amsterdam:'Amsterdam',
+  Hamburg: 'Hamburg',
+  Dusseldorf: 'Dusseldorf'
+} as const;
+
+
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, CityMap };

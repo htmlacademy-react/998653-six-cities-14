@@ -1,40 +1,45 @@
-/* eslint-disable no-return-assign */
+import { faker } from '@faker-js/faker';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/header/header';
-import { OffersProps } from '../../types/Offers.type';
+import { OfferPreviewProps } from '../../types/Offers.type';
 import { Cities } from '../../components/cities/cities-component';
 import {useState } from 'react';
 
-type MainPageProps = {
-  offers: OffersProps;
+ type MainPageProps = {
+  offers: OfferPreviewProps;
+}
+
+type offersByCityProps ={
+  offersByCity: Record<string, OfferPreviewProps>;
 }
 
 function MainPage({ offers } : MainPageProps) {
-  const offersByCity: Record<string, OffersProps> = { };
 
+  const offersByCity: offersByCityProps = { }; // наполняем разделенными офферами по городам
   for(const offer of offers) {
-    const city = offer.city.name;
+    const cityByOffer = offer.city.name; //
 
-    if (city in offersByCity) {
-      offersByCity[city].push(offer);
-      continue;
+    if(!offersByCity[cityByOffer]) {
+      offersByCity[cityByOffer] = [];
+
+      //в конкретный ключ  конкретного города текущего офера добавляем оффер
+      offersByCity[cityByOffer].push(offer);
     }
-
-    offersByCity[city] = [offer];
-    continue;
   }
+  const cities = Object.keys(offersByCity).toSorted();
+  const [selectedCity, setSelectedCity] = useState(cities[4]);
 
-  const cities = Object.keys(offersByCity);
-  const [selectedCity, setSelectedCity] = useState(cities[0]);
+  const [activeOffer, setOffer] = useState<null | string>(null);
+
 
   return (
     <div className="page page--gray page--main">
       <Helmet>
         <title>{'6 cities - MainPage'}</title>
       </Helmet>
-      <Header />
+      <Header isAuthorized={faker.datatype.boolean()} />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -61,16 +66,16 @@ function MainPage({ offers } : MainPageProps) {
                 </li>
               ))}
 
-
             </ul>
           </section>
         </div>
-        <Cities offers = {offers} />
+        <Cities
+          offersByCity = { offersByCity }
+          setActive={ setOffer }
+        />
       </main>
     </div>
   );
-
-
 }
 
 export { MainPage };

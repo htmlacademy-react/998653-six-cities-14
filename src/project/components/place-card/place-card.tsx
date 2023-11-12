@@ -1,22 +1,30 @@
-import { Offer } from '../../types/Offers.type';
+import { OfferPreviewProps } from '../../types/Offers.type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 
 type PlaceCardComponentProps = {
-  offer: Offer;
+  offer: OfferPreviewProps;
 } & {
-  handleMouseOver: () => void; //
+  onCardHover: () => void; //
 }
 
-function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps) {
+function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
 
   const { isPremium, previewImage, price, type, title, id } = offer;
 
+  const handleMouseEnter = () => {
+    onCardHover?.(id); //?
+  };
+
+  const handleMouseLeave = () => {
+    onCardHover?.(null); //?
+  };
 
   return (
     <article
       className="cities__card place-card"
-      onMouseOver={handleMouseOver}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {isPremium && (
         <div className="place-card__mark">
@@ -30,7 +38,7 @@ function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps)
             src={previewImage}
             width={260}
             height={200}
-            alt="Place image"
+            alt={title}
           />
         </Link>
       </div>
@@ -62,4 +70,4 @@ function PlaceCardComponent({ offer, handleMouseOver }: PlaceCardComponentProps)
   );
 }
 
-export default PlaceCardComponent;
+export { PlaceCardComponent };
