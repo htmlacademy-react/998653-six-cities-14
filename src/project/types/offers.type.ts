@@ -1,16 +1,16 @@
-export type OffersProps = Root2[];
+export type OffersProps = Offer[];
 
-export interface Root2 {
+export interface Offer{
   bedrooms: number;
   city: City;
   description: string;
   goods: string[];
   host: Host;
-  id: number;
+  id: string;
   images: string[];
   isFavorite: boolean;
   isPremium: boolean;
-  location: Location2;
+  location: Location;
   maxAdults: number;
   previewImage: string;
   price: number;
@@ -35,11 +35,5 @@ export interface Host {
   id: number;
   isPro: boolean;
   name: string;
-}
-
-export interface Location2 {
-  latitude: number;
-  longitude: number;
-  zoom: number;
 }
 

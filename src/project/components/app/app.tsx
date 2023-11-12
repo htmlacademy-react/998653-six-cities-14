@@ -8,22 +8,32 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { RentQuantity } from '../../const/const';
+import { mockedOffer} from '../../mocks/offers';
+import { OffersProps } from '../../types/Offers.type';
 
-function App() {
+type AppProps = {
+  offers: OffersProps;
+}
+
+function App({offers}: AppProps) {
+
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage props={RentQuantity.quantity} />}
+            element={
+              <MainPage
+                offers={offers}
+              />
+            }
           />
           <Route
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth}
+                restrictedFor={AuthorizationStatus.Auth} // потом поненять на No
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />
@@ -34,16 +44,23 @@ function App() {
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.NoAuth}
+                restrictedFor={AuthorizationStatus.Auth}
                 redirectTo={AppRoute.Login}
               >
-                <FavoritePage />
+                <FavoritePage
+                  offers={offers}
+                />
               </ProtectedRoute >
             }
           />
+
           <Route
             path={`${AppRoute.Offer}/:offerId`} //косяк
-            element={<OfferPage />}
+            element={
+              <OfferPage
+                offer = {mockedOffer} // заменить потом на все оfeры
+              />
+            }
           />
           <Route
             path='*'

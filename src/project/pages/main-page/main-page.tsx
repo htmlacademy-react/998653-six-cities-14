@@ -1,14 +1,16 @@
-import PlaceCardComponent from '../../components/place-card/place-card';
-import { placeCountArr } from '../../utils/utils';
+
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/header/header';
+import { OffersProps } from '../../types/Offers.type';
+import { ListOffersComponent } from '../../components/list-offers/list-offers';
 
 type MainPageProps = {
-  props: number;
+  offers: OffersProps;
 }
 
-function MainPage({props}: MainPageProps) {
+function MainPage({offers} : MainPageProps) {
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -57,7 +59,7 @@ function MainPage({props}: MainPageProps) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{props} places to stay in Amsterdam</b>
+              <b className="places__found"> places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -84,9 +86,7 @@ function MainPage({props}: MainPageProps) {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {placeCountArr.map((count) => <PlaceCardComponent key={count.id}/>)}
-              </div>
+              <ListOffersComponent offers ={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />
