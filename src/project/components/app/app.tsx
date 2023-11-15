@@ -43,7 +43,7 @@ function App({offers}: AppProps) {
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth}
+                restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Login}
               >
                 <FavoritePage

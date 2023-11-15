@@ -17,16 +17,15 @@ type offersByCityProps ={
 
 function MainPage({ offers } : MainPageProps) {
 
-  const offersByCity: offersByCityProps = { }; // наполняем разделенными офферами по городам
+  const offersByCity: offersByCityProps = {}; // наполняем разделенными офферами по городам
   for(const offer of offers) {
     const cityByOffer = offer.city.name; //
 
     if(!offersByCity[cityByOffer]) {
       offersByCity[cityByOffer] = [];
-
+    }
       //в конкретный ключ  конкретного города текущего офера добавляем оффер
       offersByCity[cityByOffer].push(offer);
-    }
   }
   const cities = Object.keys(offersByCity).toSorted();
   const [selectedCity, setSelectedCity] = useState(cities[4]);
@@ -72,9 +71,9 @@ function MainPage({ offers } : MainPageProps) {
           </section>
         </div>
         <Cities
-          offers = {offers}
-          offersByCity = { offersByCity }
+          offers = {offersByCity[selectedCity]}
           setActive={ setOffer }
+          selectedCity = { selectedCity}
         />
       </main>
     </div>
