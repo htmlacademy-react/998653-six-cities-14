@@ -6,6 +6,7 @@ import { Header } from '../../components/header/header';
 import { OfferPreviewProps } from '../../types/Offers.type';
 import { Cities } from '../../components/cities/cities-component';
 import {useState } from 'react';
+import { CITIES  } from '../../const/const';
 
  type MainPageProps = {
   offers: OfferPreviewProps;
@@ -74,6 +75,7 @@ function MainPage({ offers } : MainPageProps) {
           offers = {offersByCity[selectedCity]}
           setActive={ setOffer }
           selectedCity = { selectedCity}
+          city ={ CITIES }
         />
       </main>
     </div>
