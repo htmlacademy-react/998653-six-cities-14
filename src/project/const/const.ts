@@ -1,4 +1,4 @@
-import {City  } from '../types/Offers.type';
+import { City } from '../types/Offers.type';
 
 const RentQuantity = {
   quantity: 6

@@ -1,6 +1,5 @@
 import {Fragment, ChangeEvent, useState } from 'react';
 import { MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH } from '../../const/const';
-import { CommentsProps } from '../../types/Comments.type';
 
 const RatingMap = {
   '5': 'perfect',

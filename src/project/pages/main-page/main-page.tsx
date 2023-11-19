@@ -6,7 +6,7 @@ import { Header } from '../../components/header/header';
 import { OfferPreviewProps } from '../../types/Offers.type';
 import { Cities } from '../../components/cities/cities-component';
 import {useState } from 'react';
-import { CITIES  } from '../../const/const';
+import { CITIES } from '../../const/const';
 
  type MainPageProps = {
   offers: OfferPreviewProps;
@@ -25,12 +25,13 @@ function MainPage({ offers } : MainPageProps) {
     if(!offersByCity[cityByOffer]) {
       offersByCity[cityByOffer] = [];
     }
-      //в конкретный ключ  конкретного города текущего офера добавляем оффер
-      offersByCity[cityByOffer].push(offer);
+    //в конкретный ключ  конкретного города текущего офера добавляем оффер
+    offersByCity[cityByOffer].push(offer);
   }
   const cities = Object.keys(offersByCity).toSorted();
   const [selectedCity, setSelectedCity] = useState(cities[4]);
 
+  // куда дальше передаем  activeOffer?
   const [activeOffer, setOffer] = useState<null | string>(null);
 
 
@@ -66,7 +67,7 @@ function MainPage({ offers } : MainPageProps) {
                       <span>{city}</span>
                     </Link>
                   </li>
-              ))}
+                ))}
 
             </ul>
           </section>

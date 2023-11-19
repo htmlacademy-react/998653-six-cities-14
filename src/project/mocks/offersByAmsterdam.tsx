@@ -44,7 +44,7 @@ const offersByAmsterdam: OffersProps = [
 },
 {
   bedrooms: 1,
-  description: 'Placeful studio in the most wanted area in tow';
+  description: 'Placeful studio in the most wanted area in tow',
   goods: [
     'Towels',
     'Laptop',

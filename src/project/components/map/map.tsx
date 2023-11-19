@@ -35,7 +35,7 @@ const activeIconConfig = {
   anchorY: 40
 };
 
-function createIcon(config: TMapProps) {
+function createIcon(config: TIconConfig) {
   return new Icon ({
     iconUrl: config.url,
     iconSize: [config.width, config.height],

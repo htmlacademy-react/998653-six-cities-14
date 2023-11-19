@@ -28,16 +28,16 @@ function Header({
                 }
               )}
               to={AppRoute.Main}
-            > 
+            >
               <img
-              className="header__logo"
-              src="img/logo.svg"
-              alt="6 cities logo"
-              width="{81}"
-              height="{41}"
-            />
-          </Link>
-            
+                className="header__logo"
+                src="img/logo.svg"
+                alt="6 cities logo"
+                width="{81}"
+                height="{41}"
+              />
+            </Link>
+
           </div>
           { !hideNavigation && (
             <nav className="header__nav">
@@ -54,14 +54,14 @@ function Header({
                       </span>
                       <span className="header__favorite-count">3</span>
                     </Link>
-                   
+
                   </li>
                 ) : (
                   <li className="header__nav-item">
                     <Link className="header__nav-link" to={AppRoute.Login}>
                       <span className="header__signout">Sign out</span>
                     </Link>
-            
+
                   </li>
                 )}
               </ul>

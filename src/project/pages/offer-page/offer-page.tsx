@@ -7,6 +7,7 @@ import { mockedReviews } from '../../mocks/rewiews';
 import { AppRoute } from '../../const/const';
 import classNames from 'classnames';
 import { faker } from '@faker-js/faker';
+import { Map } from '../../components/map/map';
 
 
 type OfferPageProps = {
@@ -125,6 +126,11 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
 
           <section className="offer__map map" />
+          <Map
+            location=''
+            offers={offers}
+            specialOfferId=''
+          />
         </section>
         <div className="container">
           <section className="near-places places">

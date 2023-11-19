@@ -20,7 +20,7 @@ function ReviewList ({reviews}: ReviewFormProps) {
           ))}
         </div>
       </ul>
-      <ReviewForm isAuthorized={faker.datatype.boolean()} /> 
+      <ReviewForm isAuthorized={faker.datatype.boolean()} />
     </>
   );
 }

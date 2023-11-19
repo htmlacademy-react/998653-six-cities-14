@@ -12,7 +12,7 @@ type ReviewItemProps= {
 };
 
 function ReviewItem({review}:ReviewItemProps) {
-  const {user} = review;
+  const {user, comment, date} = review;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -22,7 +22,7 @@ function ReviewItem({review}:ReviewItemProps) {
             src={user.avatarUrl}
             width={54}
             height={54}
-            alt="Reviews avatar"
+            alt={user.name}
           />
         </div>
         <span className="reviews__user-name">{user.name}</span>
@@ -35,8 +35,9 @@ function ReviewItem({review}:ReviewItemProps) {
           </div>
         </div>
         <p className="reviews__text">
+          {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">
+        <time className="reviews__time" dateTime={date}>
           {dateFormatter.format(new Date())}
         </time>
       </div>

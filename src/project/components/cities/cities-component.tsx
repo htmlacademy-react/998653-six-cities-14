@@ -16,6 +16,7 @@ function Cities ({offers, setActive, selectedCity }: CitiesProps) {
 
   const activeCity = CityMap.Amsterdam;
 
+  // что пишем  в setActive
   const handleCardHover = (offerId: OfferPreviewProps['id'] | null) => {
     setHoveredOfferId(offerId);
   };
@@ -65,6 +66,7 @@ function Cities ({offers, setActive, selectedCity }: CitiesProps) {
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
+            {/* {что передаем в map} */}
             <Map
               location={activeCity.location}
               offers={offers}
