@@ -2,6 +2,7 @@ import { PlaceCardComponent } from '../../components/place-card/place-card';
 import {OfferPreviewProps } from '../../types/Offers.type';
 import { useState } from 'react';
 import { Map } from'../../components/map/map';
+import { CityMap } from '../../const/const';
 
 
 type CitiesProps = {
@@ -11,7 +12,9 @@ type CitiesProps = {
 }
 
 function Cities ({offers, setActive, selectedCity }: CitiesProps) {
-  const [hoveredOfferId, setHoveredOfferId] = useState(null);
+  const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreviewProps['id'] | null >(null);
+
+  const activeCity = CityMap.Amsterdam;
 
   const handleCardHover = (offerId: OfferPreviewProps['id'] | null) => {
     setHoveredOfferId(offerId);
@@ -63,9 +66,10 @@ function Cities ({offers, setActive, selectedCity }: CitiesProps) {
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map
-              location={location}
+              location={activeCity.location}
               offers={offers}
-              specialOfferId={specialOfferId}/>
+              specialOfferId={hoveredOfferId}
+            />
           </section>
         </div>
       </div>

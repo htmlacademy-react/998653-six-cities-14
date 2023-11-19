@@ -12,6 +12,7 @@ function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
 
   const { isPremium, previewImage, price, type, title, id } = offer;
 
+  //СВ = наведение курсора на данную карочку
   const handleMouseEnter = () => {
     onCardHover?.(id); //?
   };

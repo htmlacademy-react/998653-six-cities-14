@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { icon, layerGroup, Marker } from 'leaflet';
+import { Icon, layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { OfferPreviewProps, Location } from '../../types/Offers.type';
