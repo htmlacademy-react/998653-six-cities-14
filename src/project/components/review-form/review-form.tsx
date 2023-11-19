@@ -1,6 +1,7 @@
 import {Fragment, ChangeEvent, useState } from 'react';
 import { MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH } from '../../const/const';
 
+
 const RatingMap = {
   '5': 'perfect',
   '4': 'good',

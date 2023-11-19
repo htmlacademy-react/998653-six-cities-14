@@ -3,6 +3,7 @@ import {OfferPreviewProps } from '../../types/Offers.type';
 import { useState } from 'react';
 import { Map } from'../../components/map/map';
 import { CityMap } from '../../const/const';
+import { OffersListNeighbourhood } from '../../components/offers-list-neighbourhood/offers-list-neighbourhood';
 
 
 type CitiesProps = {
@@ -73,6 +74,9 @@ function Cities ({offers, setActive, selectedCity }: CitiesProps) {
               specialOfferId={hoveredOfferId}
             />
           </section>
+          <OffersListNeighbourhood
+            offers ={offers}
+          />
         </div>
       </div>
     </div>

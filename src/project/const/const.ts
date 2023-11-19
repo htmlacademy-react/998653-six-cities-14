@@ -37,6 +37,8 @@ const OFFER_TYPES = [
 
 const MAX_COMMENTS_LENGTH = 1024;
 const MIN_COMMENTS_LENGTH = 12;
+const MAX_REVIEWS_COUNT = 10;
+const MAX_NEAR_PLACES_COUNT = 3;
 
 const CityMap: Record<string, City> = {
   'Paris': {
@@ -90,4 +92,4 @@ const CityMap: Record<string, City> = {
 } as const;
 
 
-export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, CityMap };
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap };

@@ -165,3 +165,5 @@ const offersByAmsterdam: OffersProps = [
 ]
 
 
+export { offersByAmsterdam }
+

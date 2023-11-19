@@ -83,7 +83,13 @@ function Map({ location, offers, specialOfferId }:TMapProps) {
 
   return (
     <div
-      style={{height: '50px'}}
+      style={{
+        height: '100%',
+        minHeight: '500px',
+        width: '100%',
+        maxWidth: '1140px',
+        margin: '0 auto',
+      }}
       ref={mapRef}
     >
     </div>
