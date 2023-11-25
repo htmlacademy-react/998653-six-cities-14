@@ -1,11 +1,10 @@
-import { OfferPreviewProps } from '../../types/Offers.type';
+import { OfferProp } from '../../types/Offers.type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 
 type PlaceCardComponentProps = {
-  offer: OfferPreviewProps;
-} & {
-  onCardHover: () => void; //
+  offer: OfferProp;
+  onCardHover?: () => void;
 }
 
 function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {

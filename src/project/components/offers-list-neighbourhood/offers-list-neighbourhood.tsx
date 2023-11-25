@@ -1,8 +1,14 @@
-import {OfferPreviewProps } from '../../types/Offers.type';
+import { OffersProps } from '../../types/Offers.type';
+import { PlaceCardComponent } from '../place-card/place-card';
 
 type OffersListNeighbourhoodProp={
-  offers: OfferPreviewProps;
+  offers: OffersProps;
 }
+
+const handleCardHover = () => {
+  // eslint-disable-next-line no-console
+  console.log('Hi');
+};
 
 function OffersListNeighbourhood ({offers}: OffersListNeighbourhoodProp) {
   return (

@@ -7,6 +7,7 @@ import { OfferPreviewProps } from '../../types/Offers.type';
 import { Cities } from '../../components/cities/cities-component';
 import {useState } from 'react';
 import { CITIES } from '../../const/const';
+import { CityMap } from '../../const/const';
 
  type MainPageProps = {
   offers: OfferPreviewProps;
@@ -29,7 +30,10 @@ function MainPage({ offers } : MainPageProps) {
     offersByCity[cityByOffer].push(offer);
   }
   const cities = Object.keys(offersByCity).toSorted();
-  const [selectedCity, setSelectedCity] = useState(cities[4]);
+
+  const FirstCity = CityMap['Amsterdam'];
+  const [selectedCity, setSelectedCity] = useState(FirstCity.name);
+
 
   // куда дальше передаем  activeOffer?
   const [activeOffer, setOffer] = useState<null | string>(null);

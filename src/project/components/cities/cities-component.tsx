@@ -1,24 +1,22 @@
 import { PlaceCardComponent } from '../../components/place-card/place-card';
-import {OfferPreviewProps } from '../../types/Offers.type';
+import { OffersProps, OfferProp} from '../../types/Offers.type';
 import { useState } from 'react';
 import { Map } from'../../components/map/map';
-import { CityMap } from '../../const/const';
-import { OffersListNeighbourhood } from '../../components/offers-list-neighbourhood/offers-list-neighbourhood';
+import { CityMap, } from '../../const/const';
 
 
 type CitiesProps = {
-  offers: OfferPreviewProps;
+  offers: OffersProps;
   selectedCity: string;
-  setActive: () => void;
 }
 
-function Cities ({offers, setActive, selectedCity }: CitiesProps) {
-  const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreviewProps['id'] | null >(null);
+function Cities ({offers, selectedCity }: CitiesProps) {
+  const [hoveredOfferId, setHoveredOfferId] = useState<OfferProp['id'] | null >(null);
 
   const activeCity = CityMap.Amsterdam;
 
   // что пишем  в setActive
-  const handleCardHover = (offerId: OfferPreviewProps['id'] | null) => {
+  const handleCardHover = (offerId: OfferProp['id'] | null) => {
     setHoveredOfferId(offerId);
   };
 
@@ -67,16 +65,12 @@ function Cities ({offers, setActive, selectedCity }: CitiesProps) {
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
-            {/* {что передаем в map} */}
             <Map
               location={activeCity.location}
               offers={offers}
               specialOfferId={hoveredOfferId}
             />
           </section>
-          <OffersListNeighbourhood
-            offers ={offers}
-          />
         </div>
       </div>
     </div>

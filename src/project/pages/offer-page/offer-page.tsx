@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { OffersProps } from '../../types/Offers.type';
@@ -9,19 +9,17 @@ import classNames from 'classnames';
 import { faker } from '@faker-js/faker';
 import { Map } from '../../components/map/map';
 import { offersByAmsterdam } from '../../mocks/offersByAmsterdam';
-import { PlaceCardComponent } from '../../components/place-card/place-card';
-import { OfferPreview } from '../../types/Offers.type';
+import { OffersListNeighbourhood } from '../../components/offers-list-neighbourhood/offers-list-neighbourhood';
+import { CityMap } from '../../const/const';
 
 
 type OfferPageProps = {
   offers: OffersProps;
 }
 
-type OfferPreviewProps ={
-  offers: OfferPreview;
-}
-
 function OfferPage({offers}: OfferPageProps) {
+  const activeCity = CityMap['Amsterdam'];
+
   const { offerId } = useParams();
   const offer = offers.find((item) => item.id === offerId);
 
@@ -131,29 +129,16 @@ function OfferPage({offers}: OfferPageProps) {
               </section>
             </div>
           </div>
-
-          <section className="offer__map map" />
-          {/* {что сюда передаем?} */}
           <Map
-            location=''
+            location={activeCity.location}
             offers={ offersByAmsterdam }
             specialOfferId=''
           />
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {/* {как мне выделить только офееры для превьюшек?} */}
-              {offersPreview.map((offerPreview) => (
-                <PlaceCardComponent
-                  offer={offerPreview}
-                  key={offerPreview.id}
-                  onCardHover={handleCardHover}
-                />
-              ))}
-            </div>
-          </section>
+          <OffersListNeighbourhood
+            offers={offers}
+          />
         </div>
       </main>
     </div>
