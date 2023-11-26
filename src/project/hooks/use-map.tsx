@@ -7,7 +7,7 @@ function useMap (
   city: Location
 ):Map | null {
   const [map, setMap] = useState<Map | null>(null);
-  const isRenderedRef = useRef(false); //храним инфу - была карта отрисаван или нет
+  const isRenderedRef = useRef(false);
 
   const TILE_LAYER =
     'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';

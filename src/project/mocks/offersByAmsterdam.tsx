@@ -16,7 +16,7 @@ const offersByAmsterdam: Offer[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 1 // что сюда пишем?
+      id: 1,
     },
     images: [
       'img/apartment-01.jpg',
@@ -25,7 +25,7 @@ const offersByAmsterdam: Offer[] = [
     ],
     maxAdults: 3,
     city:CityMap.Amsterdam,
-    id: '3erfderf', // что сюда пишем?
+    id: '3erfderf',
     isFavorite: false,
     isPremium: true,
     location: {
@@ -53,7 +53,7 @@ const offersByAmsterdam: Offer[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 0 // что сюда пишем?
+      id: 0
     },
     images: [
       'img/apartment-01.jpg',
@@ -62,7 +62,7 @@ const offersByAmsterdam: Offer[] = [
     ],
     maxAdults: 3,
     city: CityMap.Amsterdam,
-    id: '53454gfe', // что сюда пишем?
+    id: '53454gfe',
     isFavorite: false,
     isPremium: true,
     location: {
@@ -90,7 +90,7 @@ const offersByAmsterdam: Offer[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 0 // что сюда пишем?
+      id: 0
     },
     images: [
       'img/apartment-01.jpg',
@@ -99,7 +99,7 @@ const offersByAmsterdam: Offer[] = [
     ],
     maxAdults: 3,
     city:CityMap.Amsterdam,
-    id: '6453ecvwf543', // что сюда пишем?
+    id: '6453ecvwf543',
     isFavorite: false,
     isPremium: true,
     location: {
@@ -127,7 +127,7 @@ const offersByAmsterdam: Offer[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 0 // что сюда пишем?
+      id: 0
     },
     images: [
       'img/apartment-01.jpg',
@@ -136,7 +136,7 @@ const offersByAmsterdam: Offer[] = [
     ],
     maxAdults: 3,
     city:CityMap.Amsterdam,
-    id: '32342evfecefc', // что сюда пишем?
+    id: '32342evfecefc',
     isFavorite: false,
     isPremium: true,
     location: {
