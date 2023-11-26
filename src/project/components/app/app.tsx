@@ -8,10 +8,10 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { OffersProps } from '../../types/Offers.type';
+import { Offer } from '../../types/offers.type';
 
 type AppProps = {
-  offers: OffersProps;
+  offers: Offer[];
 }
 
 function App({offers}: AppProps) {

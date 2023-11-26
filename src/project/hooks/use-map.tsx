@@ -1,14 +1,13 @@
 import {useEffect, useState, useRef, MutableRefObject} from 'react';
-import leaflet from 'leaflet';
 import { Map, TileLayer } from 'leaflet';
-import { Location } from '../types/Offers.type';
+import { Location } from '../types/offers.type';
 
 function useMap (
   mapRef: MutableRefObject<HTMLElement | null>,
   city: Location
 ):Map | null {
   const [map, setMap] = useState<Map | null>(null);
-  const isRenderedRef = useRef(false); //храним инфу - была карта отрисаван или нет
+  const isRenderedRef = useRef(false);
 
   const TILE_LAYER =
     'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';

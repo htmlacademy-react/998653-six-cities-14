@@ -24,7 +24,7 @@ function Header({
               className= {classNames(
                 'header__logo-link',
                 {
-                  'header__logo-link--active': pathname === AppRoute.Main //хз?
+                  'header__logo-link--active':pathname === AppRoute.Main //хз?
                 }
               )}
               to={AppRoute.Main}

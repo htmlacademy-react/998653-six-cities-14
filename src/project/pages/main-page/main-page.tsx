@@ -3,37 +3,30 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/header/header';
-import { OfferPreviewProps } from '../../types/Offers.type';
+import { OfferPreview, OffersByCity } from '../../types/offers.type';
 import { Cities } from '../../components/cities/cities-component';
 import {useState } from 'react';
-import { CITIES } from '../../const/const';
+import { CityMap } from '../../const/const';
 
  type MainPageProps = {
-  offers: OfferPreviewProps;
-}
-
-type offersByCityProps ={
-  offersByCity: Record<string, OfferPreviewProps>;
+  offers: OfferPreview[];
 }
 
 function MainPage({ offers } : MainPageProps) {
 
-  const offersByCity: offersByCityProps = {}; // наполняем разделенными офферами по городам
+  const offersByCity: OffersByCity = {};
   for(const offer of offers) {
-    const cityByOffer = offer.city.name; //
+    const cityByOffer = offer.city.name;
 
     if(!offersByCity[cityByOffer]) {
       offersByCity[cityByOffer] = [];
     }
-    //в конкретный ключ  конкретного города текущего офера добавляем оффер
     offersByCity[cityByOffer].push(offer);
   }
   const cities = Object.keys(offersByCity).toSorted();
-  const [selectedCity, setSelectedCity] = useState(cities[4]);
 
-  // куда дальше передаем  activeOffer?
-  const [activeOffer, setOffer] = useState<null | string>(null);
-
+  const FirstCity = CityMap['Amsterdam'];
+  const [selectedCity, setSelectedCity] = useState(FirstCity.name);
 
   return (
     <div className="page page--gray page--main">
@@ -74,9 +67,7 @@ function MainPage({ offers } : MainPageProps) {
         </div>
         <Cities
           offers = {offersByCity[selectedCity]}
-          setActive={ setOffer }
           selectedCity = { selectedCity}
-          city ={ CITIES }
         />
       </main>
     </div>

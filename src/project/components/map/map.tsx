@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Icon, layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { OfferPreviewProps, Location } from '../../types/Offers.type';
+import { Location, OfferPreview } from '../../types/offers.type';
 
 import { useMap } from '../../hooks/use-map';
 
@@ -16,8 +16,8 @@ type TIconConfig = {
 
 type TMapProps = {
   location: Location;
-  offers: OfferPreviewProps;
-  specialOfferId: OfferPreviewProps['id'] | null;
+  offers: OfferPreview[];
+  specialOfferId: OfferPreview['id'] | null;
 };
 
 const defaultIconConfig = {

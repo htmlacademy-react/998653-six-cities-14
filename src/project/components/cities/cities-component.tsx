@@ -1,24 +1,20 @@
 import { PlaceCardComponent } from '../../components/place-card/place-card';
-import {OfferPreviewProps } from '../../types/Offers.type';
+import { OfferPreview } from '../../types/offers.type';
 import { useState } from 'react';
 import { Map } from'../../components/map/map';
 import { CityMap } from '../../const/const';
-import { OffersListNeighbourhood } from '../../components/offers-list-neighbourhood/offers-list-neighbourhood';
 
 
 type CitiesProps = {
-  offers: OfferPreviewProps;
+  offers: OfferPreview[];
   selectedCity: string;
-  setActive: () => void;
 }
 
-function Cities ({offers, setActive, selectedCity }: CitiesProps) {
-  const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreviewProps['id'] | null >(null);
-
+function Cities ({offers, selectedCity }: CitiesProps) {
+  const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreview['id'] | null >(null);
   const activeCity = CityMap.Amsterdam;
 
-  // что пишем  в setActive
-  const handleCardHover = (offerId: OfferPreviewProps['id'] | null) => {
+  const handleCardHover = (offerId: OfferPreview['id'] | null) => {
     setHoveredOfferId(offerId);
   };
 
@@ -67,16 +63,12 @@ function Cities ({offers, setActive, selectedCity }: CitiesProps) {
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
-            {/* {что передаем в map} */}
             <Map
               location={activeCity.location}
               offers={offers}
               specialOfferId={hoveredOfferId}
             />
           </section>
-          <OffersListNeighbourhood
-            offers ={offers}
-          />
         </div>
       </div>
     </div>

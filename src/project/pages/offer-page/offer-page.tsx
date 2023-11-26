@@ -1,32 +1,32 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
-import { OffersProps } from '../../types/Offers.type';
+import { Offer } from '../../types/offers.type';
 import { ReviewList } from '../../components/review-list/review-list';
 import { mockedReviews } from '../../mocks/rewiews';
 import { AppRoute } from '../../const/const';
 import classNames from 'classnames';
 import { faker } from '@faker-js/faker';
 import { Map } from '../../components/map/map';
-import { offersByAmsterdam } from '../../mocks/offersByAmsterdam';
 import { PlaceCardComponent } from '../../components/place-card/place-card';
-import { OfferPreview } from '../../types/Offers.type';
+import { useState } from 'react';
 
 
 type OfferPageProps = {
-  offers: OffersProps;
+  offers: Offer[];
 }
 
-type OfferPreviewProps ={
-  offers: OfferPreview;
-}
 
 function OfferPage({offers}: OfferPageProps) {
   const { offerId } = useParams();
   const offer = offers.find((item) => item.id === offerId);
+  const [hoveredOfferId, setHoveredOfferId] = useState<Offer['id'] | null >(null);
+  const handleCardHover = (id: Offer['id'] | null) => {
+    setHoveredOfferId(id);
+  };
 
   if(!offer) {
-    return <Navigate to={AppRoute.NotFound} />; // не сработало
+    return <Navigate to={AppRoute.NotFound} />;
   }
 
   return (
@@ -133,19 +133,17 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
 
           <section className="offer__map map" />
-          {/* {что сюда передаем?} */}
           <Map
-            location=''
-            offers={ offersByAmsterdam }
-            specialOfferId=''
+            location={ offer.city.location}
+            offers={ offers }
+            specialOfferId={hoveredOfferId}
           />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {/* {как мне выделить только офееры для превьюшек?} */}
-              {offersPreview.map((offerPreview) => (
+              {offers.map((offerPreview) => (
                 <PlaceCardComponent
                   offer={offerPreview}
                   key={offerPreview.id}
