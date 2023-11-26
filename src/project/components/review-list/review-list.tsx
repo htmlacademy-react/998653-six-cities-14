@@ -1,4 +1,4 @@
-import { CommentsProps } from '../../types/Comments.type';
+import { CommentsProps } from '../../types/comments.type';
 import { ReviewItem } from '../../components/review-item/review-item';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { faker } from '@faker-js/faker';
