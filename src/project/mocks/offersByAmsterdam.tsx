@@ -1,6 +1,7 @@
-import { OffersProps } from '../types/Offers.type';
+import { CityMap } from '../const/const';
+import { Offer } from '../types/offers.type';
 
-const offersByAmsterdam: OffersProps = [
+const offersByAmsterdam: Offer[] = [
   {
     bedrooms: 1,
     description: 'Placeful studio in the most wanted area in tow',
@@ -15,7 +16,7 @@ const offersByAmsterdam: OffersProps = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 0 // что сюда пишем?
+      id: 1 // что сюда пишем?
     },
     images: [
       'img/apartment-01.jpg',
@@ -23,15 +24,8 @@ const offersByAmsterdam: OffersProps = [
       'img/apartment-03.jpg'
     ],
     maxAdults: 3,
-    city:{
-      name: 'Amsterdam',
-      location:{
-        latitude: 52.3609553943508,
-        longitude: 4.85309666406198,
-        zoom: 16,
-      }
-    },
-    id: '1n',
+    city:CityMap.Amsterdam,
+    id: '3erfderf', // что сюда пишем?
     isFavorite: false,
     isPremium: true,
     location: {
@@ -59,7 +53,7 @@ const offersByAmsterdam: OffersProps = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 2
+      id: 0 // что сюда пишем?
     },
     images: [
       'img/apartment-01.jpg',
@@ -67,15 +61,8 @@ const offersByAmsterdam: OffersProps = [
       'img/apartment-03.jpg'
     ],
     maxAdults: 3,
-    city:{
-      name: 'Amsterdam',
-      location: {
-        latitude: 52.3609553943508,
-        longitude: 4.85309666406198,
-        zoom: 16,
-      }
-    },
-    id: '3n',
+    city: CityMap.Amsterdam,
+    id: '53454gfe', // что сюда пишем?
     isFavorite: false,
     isPremium: true,
     location: {
@@ -103,7 +90,7 @@ const offersByAmsterdam: OffersProps = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
-      id: 4,
+      id: 0 // что сюда пишем?
     },
     images: [
       'img/apartment-01.jpg',
@@ -111,15 +98,8 @@ const offersByAmsterdam: OffersProps = [
       'img/apartment-03.jpg'
     ],
     maxAdults: 3,
-    city:{
-      name: 'Amsterdam',
-      location:{
-        latitude: 52.3609553943508,
-        longitude: 4.85309666406198,
-        zoom: 16,
-      }
-    },
-    id: '5n',
+    city:CityMap.Amsterdam,
+    id: '6453ecvwf543', // что сюда пишем?
     isFavorite: false,
     isPremium: true,
     location: {
@@ -155,15 +135,8 @@ const offersByAmsterdam: OffersProps = [
       'img/apartment-03.jpg'
     ],
     maxAdults: 3,
-    city:{
-      name: 'Amsterdam',
-      location: {
-        latitude: 52.3609553943508,
-        longitude: 4.85309666406198,
-        zoom: 16,
-      }
-    },
-    id: '6n',
+    city:CityMap.Amsterdam,
+    id: '32342evfecefc', // что сюда пишем?
     isFavorite: false,
     isPremium: true,
     location: {

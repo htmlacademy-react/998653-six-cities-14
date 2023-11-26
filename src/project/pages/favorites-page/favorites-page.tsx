@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
-import { OffersProps } from '../../types/Offers.type';
+import { Offer } from '../../types/offers.type';
 import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import { Link } from 'react-router-dom';
 
 type FavoritePageProps ={
-  offers: OffersProps;
+  offers: Offer[];
 }
 
 function FavoritePage({offers}: FavoritePageProps){

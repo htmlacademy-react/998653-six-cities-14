@@ -1,22 +1,20 @@
 import { PlaceCardComponent } from '../../components/place-card/place-card';
-import { OffersProps, OfferProp} from '../../types/Offers.type';
+import { OfferPreview } from '../../types/offers.type';
 import { useState } from 'react';
 import { Map } from'../../components/map/map';
-import { CityMap, } from '../../const/const';
+import { CityMap } from '../../const/const';
 
 
 type CitiesProps = {
-  offers: OffersProps;
+  offers: OfferPreview[];
   selectedCity: string;
 }
 
 function Cities ({offers, selectedCity }: CitiesProps) {
-  const [hoveredOfferId, setHoveredOfferId] = useState<OfferProp['id'] | null >(null);
-
+  const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreview['id'] | null >(null);
   const activeCity = CityMap.Amsterdam;
 
-  // что пишем  в setActive
-  const handleCardHover = (offerId: OfferProp['id'] | null) => {
+  const handleCardHover = (offerId: OfferPreview['id'] | null) => {
     setHoveredOfferId(offerId);
   };
 

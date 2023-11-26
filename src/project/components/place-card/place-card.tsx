@@ -1,23 +1,21 @@
-import { OfferProp } from '../../types/Offers.type';
+import { OfferPreview } from '../../types/offers.type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 
 type PlaceCardComponentProps = {
-  offer: OfferProp;
-  onCardHover?: () => void;
+  offer: OfferPreview;
+  onCardHover?: (id: OfferPreview['id'] | null) => void;
 }
 
 function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
-
   const { isPremium, previewImage, price, type, title, id } = offer;
 
-  //СВ = наведение курсора на данную карочку
   const handleMouseEnter = () => {
-    onCardHover?.(id); //?
+    onCardHover?.(id);
   };
 
   const handleMouseLeave = () => {
-    onCardHover?.(null); //?
+    onCardHover?.(null);
   };
 
   return (

@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { Location, Host, OfferProp } from '../types/Offers.type';
+import { Location, Host, OfferProp } from '../types/offers.type';
 import { CITIES, OFFER_TYPES } from '../const/const';
+import { offersByAmsterdam } from './offersByAmsterdam';
 
 const mockLocation = ():Location => ({
   latitude: faker.location.latitude({ max: 10, min: -10, precision: 5 }),
@@ -38,6 +39,6 @@ export const mockOffer = ():OfferProp => ({
 });
 
 export const mockedOffer = mockOffer();
-export const mockedOffers = Array.from({ length: 50 }, () => mockOffer());
+export const mockedOffers = Array.from({ length: 50 }, () => mockOffer()).concat(offersByAmsterdam);
 
 
