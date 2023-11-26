@@ -25,7 +25,27 @@ const initalState: {
 const reducer = createReducer(initalState, (builder) => {
   builder
     .addCase(fetchOffers, (state) => {
-      state = state + 1;
+      state.offers = mockedOffers;
+    })
+    .addCase(fetchOffer, (state, action) => {
+      state.offer = mockedOffers.find((offer) => offer.id === action.payload) ?? null;
+    })
+    .addCase(fetchNearPlaces, (state, action) => {
+      state.nearPlaces = mockedOffers.filter((offer) => offer.id !== action.payload);
+    })
+    .addCase(fetchReviews, (state) => {
+      state.reviews = mockedReviews;
+    })
+    .addCase(dropOffer, (state) => {
+      state.offer = null;
+      state.nearPlaces = [];
+    })
+    .addCase(setActiveCity, (state, action) => {
+      state.activeCity = action.payload;
+    })
+    .addCase(fetchFavoriteOffers, (state) => {
+      state.favorites = mockedOffers.filter((offer) => offer.isFavorite);
     });
+
 });
 export { reducer };
