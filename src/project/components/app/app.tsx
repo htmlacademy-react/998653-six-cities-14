@@ -9,12 +9,14 @@ import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { Offer } from '../../types/offers.type';
+import { Comment } from '../../types/comments.type';
 
 type AppProps = {
   offers: Offer[];
+  reviews: Comment[];
 }
 
-function App({offers}: AppProps) {
+function App({offers, reviews}: AppProps) {
 
   return (
     <HelmetProvider>
@@ -46,9 +48,7 @@ function App({offers}: AppProps) {
                 restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Login}
               >
-                <FavoritePage
-                  offers={offers}
-                />
+                <FavoritePage/>
               </ProtectedRoute >
             }
           />
@@ -58,6 +58,7 @@ function App({offers}: AppProps) {
             element={
               <OfferPage
                 offers = {offers}
+                reviews={reviews}
               />
             }
           />

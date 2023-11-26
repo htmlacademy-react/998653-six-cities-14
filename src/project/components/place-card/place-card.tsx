@@ -1,6 +1,7 @@
 import { OfferPreview } from '../../types/offers.type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
+import classNames from 'classnames';
 
 type PlaceCardComponentProps = {
   offer: OfferPreview;
@@ -8,7 +9,7 @@ type PlaceCardComponentProps = {
 }
 
 function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
-  const { isPremium, previewImage, price, type, title, id } = offer;
+  const { isPremium, previewImage, price, type, title, id, isFavorite} = offer;
 
   const handleMouseEnter = () => {
     onCardHover?.(id);
@@ -46,7 +47,15 @@ function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={classNames(
+              'place-card__bookmark-button',
+              'button',
+              {
+                'place-card__bookmark-button--active ': isFavorite === true,
+              })}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>

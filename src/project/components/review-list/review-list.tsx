@@ -1,11 +1,11 @@
-import { CommentsProps } from '../../types/comments.type';
+import { Comment } from '../../types/comments.type';
 import { ReviewItem } from '../../components/review-item/review-item';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { faker } from '@faker-js/faker';
 import { MAX_REVIEWS_COUNT } from '../../const/const';
 
 type ReviewFormProps ={
-  reviews: CommentsProps;
+  reviews: Comment[];
 };
 
 function ReviewList ({reviews}: ReviewFormProps) {

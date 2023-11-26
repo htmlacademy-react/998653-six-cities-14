@@ -1,14 +1,22 @@
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
-import { Offer } from '../../types/offers.type';
 import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch} from '../../hooks';
+import { useEffect } from 'react';
+import { fetchFavoriteOffers } from '../../store/actions';
 
-type FavoritePageProps ={
-  offers: Offer[];
-}
 
-function FavoritePage({offers}: FavoritePageProps){
+function FavoritePage(){
+  //почему пустой массив?
+  const favorites = useAppSelector((state) => state.favorites);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, [dispatch]);
+
   return (
     <div className="page">
       <Helmet>
@@ -29,7 +37,7 @@ function FavoritePage({offers}: FavoritePageProps){
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {offers.map((offer) => (
+                  {favorites.map((offer) => (
                     <FavoriteCard offer={offer} key={offer.id}/>
                   ))}
                 </div>
