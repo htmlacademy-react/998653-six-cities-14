@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Offer } from '../../types/Offers.type';
+import { OfferProp } from '../../types/Offers.type';
 
 type FavoriteCardProps = {
-  offer: Offer;
+  offer: OfferProp;
 }
 
 function FavoriteCard({offer} :FavoriteCardProps) {

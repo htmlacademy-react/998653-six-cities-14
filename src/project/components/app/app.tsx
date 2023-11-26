@@ -8,7 +8,6 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { mockedOffer} from '../../mocks/offers';
 import { OffersProps } from '../../types/Offers.type';
 
 type AppProps = {
@@ -44,7 +43,7 @@ function App({offers}: AppProps) {
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth}
+                restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Login}
               >
                 <FavoritePage
@@ -58,7 +57,7 @@ function App({offers}: AppProps) {
             path={`${AppRoute.Offer}/:offerId`} //косяк
             element={
               <OfferPage
-                offer = {mockedOffer} // заменить потом на все оfeры
+                offers = {offers}
               />
             }
           />

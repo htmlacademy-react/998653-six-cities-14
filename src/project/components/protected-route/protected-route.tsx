@@ -12,7 +12,7 @@ function ProtectedRoute({
   redirectTo,
   children
 }:TProtectedRoute) {
-  const authorizationStatus = AuthorizationStatus.NoAuth;
+  const authorizationStatus = AuthorizationStatus.Auth;
 
   return restrictedFor === authorizationStatus ? (
     <Navigate to={redirectTo} />
