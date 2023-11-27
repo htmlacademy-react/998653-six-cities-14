@@ -101,5 +101,13 @@ const CityMap: Record<string, City> = {
   },
 } as const;
 
+const SortingMap = {
+  Popular: 'Popular',
+  LowToHigh: 'Price low to high',
+  HighToLow: 'Price high to low',
+  TopRated: 'Top rated first'
 
-export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace };
+} as const;
+
+
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace, SortingMap };
