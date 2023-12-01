@@ -8,6 +8,7 @@ const fetchNearPlaces = createAction<Offer['id']>(`${NameSpace.NearPlaces}/fetch
 const fetchReviews = createAction<Offer['id']>(`${NameSpace.Reviews}/fetchReviews`);
 const dropOffer = createAction(`${NameSpace.Offer}/dropOffer`);
 const setActiveCity = createAction<City>(`${NameSpace.Offers}/setActiveCity`);
-const fetchFavoriteOffers = createAction(`${NameSpace.Favorites}/FavoriteOffers`);
+const fetchFavoriteOffers = createAction(`${NameSpace.Favorites}/fetchFavoriteOffers`);
+const fetchAuthStatus = createAction(`${NameSpace.User}/fetchAuthStatus`);
 
-export {fetchOffers, fetchOffer, fetchNearPlaces, fetchReviews, dropOffer, setActiveCity, fetchFavoriteOffers};
+export {fetchOffers, fetchOffer, fetchNearPlaces, fetchReviews, dropOffer, setActiveCity, fetchFavoriteOffers, fetchAuthStatus};

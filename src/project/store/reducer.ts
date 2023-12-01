@@ -3,8 +3,9 @@ import { mockedOffers } from '../mocks/offers';
 import { mockedReviews } from '../mocks/rewiews';
 import { Offer, OfferPreview, City } from '../types/offers.type';
 import { Comment } from '../types/comments.type';
-import { CityMap } from '../const/const';
-import {fetchOffers, fetchOffer, fetchNearPlaces, fetchReviews, dropOffer, setActiveCity, fetchFavoriteOffers} from './actions';
+import { CityMap, AuthorizationStatus } from '../const/const';
+import {fetchOffers, fetchOffer, fetchNearPlaces, fetchReviews, dropOffer, setActiveCity, fetchFavoriteOffers, fetchAuthStatus} from './actions';
+
 
 const initalState: {
   offers: OfferPreview[];
@@ -13,6 +14,7 @@ const initalState: {
   offer: Offer | null;
   favorites: OfferPreview[];
   activeCity: City;
+  authorizationStatus: string;
 } = {
   offers: [],
   nearPlaces: [],
@@ -20,6 +22,7 @@ const initalState: {
   offer: null,
   favorites: [],
   activeCity: CityMap.Paris,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const reducer = createReducer(initalState, (builder) => {
@@ -45,7 +48,9 @@ const reducer = createReducer(initalState, (builder) => {
     })
     .addCase(fetchFavoriteOffers, (state) => {
       state.favorites = mockedOffers.filter((offer) => offer.isFavorite);
+    })
+    .addCase(fetchAuthStatus, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
     });
-
 });
 export { reducer };

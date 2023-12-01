@@ -12,6 +12,12 @@ enum AppRoute {
   NotFound ='/404'
 }
 
+export enum APIRoute {
+  Login = '/login',
+  Logout = '/favorites',
+}
+
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
