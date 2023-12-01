@@ -1,32 +1,49 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { Offer } from '../../types/offers.type';
+import { Comment } from '../../types/comments.type';
 import { ReviewList } from '../../components/review-list/review-list';
-import { mockedReviews } from '../../mocks/rewiews';
-import { AppRoute } from '../../const/const';
 import classNames from 'classnames';
 import { faker } from '@faker-js/faker';
 import { Map } from '../../components/map/map';
 import { PlaceCardComponent } from '../../components/place-card/place-card';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch} from '../../hooks';
+import { MAX_NEAR_PLACES_COUNT } from '../../const/const';
+import { fetchNearPlaces, fetchOffer, dropOffer } from '../../store/actions';
 
 
 type OfferPageProps = {
-  offers: Offer[];
+  reviews: Comment[];
 }
 
 
-function OfferPage({offers}: OfferPageProps) {
+function OfferPage({reviews}: OfferPageProps) {
   const { offerId } = useParams();
-  const offer = offers.find((item) => item.id === offerId);
+  const dispatch = useAppDispatch();
+  const offer = useAppSelector((state) => state.offer);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const nearPlacesToRender = nearPlaces.slice(0, MAX_NEAR_PLACES_COUNT);
+
   const [hoveredOfferId, setHoveredOfferId] = useState<Offer['id'] | null >(null);
   const handleCardHover = (id: Offer['id'] | null) => {
     setHoveredOfferId(id);
   };
 
-  if(!offer) {
-    return <Navigate to={AppRoute.NotFound} />;
+  useEffect(() =>{
+    if(offerId) {
+      dispatch(fetchOffer(offerId));
+      dispatch(fetchNearPlaces(offerId));
+    }
+
+    return () => {
+      dispatch(dropOffer());
+    };
+  }, [offerId, dispatch]);
+
+  if (!offer) {
+    return null;
   }
 
   return (
@@ -127,15 +144,13 @@ function OfferPage({offers}: OfferPageProps) {
                 <h2 className="reviews__title">
                  Reviews · <span className="reviews__amount">1</span>
                 </h2>
-                <ReviewList reviews={mockedReviews}/>
+                <ReviewList reviews={reviews}/>
               </section>
             </div>
           </div>
-
-          <section className="offer__map map" />
           <Map
             location={ offer.city.location}
-            offers={ offers }
+            offers={ nearPlacesToRender }
             specialOfferId={hoveredOfferId}
           />
         </section>
@@ -143,7 +158,7 @@ function OfferPage({offers}: OfferPageProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.map((offerPreview) => (
+              {nearPlacesToRender.map((offerPreview) => (
                 <PlaceCardComponent
                   offer={offerPreview}
                   key={offerPreview.id}

@@ -1,58 +1,59 @@
 import { PlaceCardComponent } from '../../components/place-card/place-card';
-import { OfferPreview } from '../../types/offers.type';
+import { City, OfferPreview } from '../../types/offers.type';
 import { useState } from 'react';
 import { Map } from'../../components/map/map';
-import { CityMap } from '../../const/const';
-
+import { Sorting } from '../../components/sorting/sorting';
+import { TSorting } from '../../types/sorting.type';
+import { SortingMap } from '../../const/const';
+import { sorting } from '../../utils/offer';
 
 type CitiesProps = {
   offers: OfferPreview[];
-  selectedCity: string;
+  selectedCity: City;
 }
 
 function Cities ({offers, selectedCity }: CitiesProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreview['id'] | null >(null);
-  const activeCity = CityMap.Amsterdam;
 
   const handleCardHover = (offerId: OfferPreview['id'] | null) => {
     setHoveredOfferId(offerId);
   };
 
+  const [activeSortItem, setActiveSortItem] = useState<TSorting>(SortingMap.Popular);
+
+  const getSortingOffers = (label: TSorting) => {
+    switch (label) {
+      case 'HighToLow':
+        return sorting.HighToLow(offers);
+      case 'LowToHigh':
+        return sorting.LowToHigh(offers);
+      case 'TopRated':
+        return sorting.TopRated(offers);
+      case 'Popular':
+      default:
+        return sorting.Popular(offers);
+    }
+  };
+
+  let sortedOffers: OfferPreview[] = getSortingOffers(activeSortItem);
+
+  const handleSortOffers = (label: TSorting) => {
+    sortedOffers = getSortingOffers(label);
+    setActiveSortItem(label);
+  };
 
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found"> {offers.length} places to stay in {selectedCity}</b>
-          <form className="places__sorting" action="#" method="get">
-            <span className="places__sorting-caption">Sort by</span>q
-            <span className="places__sorting-type" tabIndex={0}>
-              Popular
-              <svg className="places__sorting-arrow" width={7} height={4}>
-                <use xlinkHref="#icon-arrow-select" />
-              </svg>
-            </span>
-            <ul className="places__options places__options--custom places__options--opened">
-              <li
-                className="places__option places__option--active"
-                tabIndex={0}
-              >
-                Popular
-              </li>
-              <li className="places__option" tabIndex={0}>
-                Price: low to high
-              </li>
-              <li className="places__option" tabIndex={0}>
-                Price: high to low
-              </li>
-              <li className="places__option" tabIndex={0}>
-                Top rated first
-              </li>
-            </ul>
-          </form>
+          <b className="places__found"> {offers.length} places to stay in {selectedCity.name}</b>
+          <Sorting
+            activeSorting={activeSortItem}
+            onChange={handleSortOffers}
+          />
           <div className="cities__places-list places__list tabs__content">
-            {offers.map((offer) => (
+            {sortedOffers.map((offer) => (
               <PlaceCardComponent
                 offer={offer}
                 key={offer.id}
@@ -64,8 +65,8 @@ function Cities ({offers, selectedCity }: CitiesProps) {
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map
-              location={activeCity.location}
-              offers={offers}
+              location={selectedCity.location}
+              offers={sortedOffers}
               specialOfferId={hoveredOfferId}
             />
           </section>

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Location, Host, OfferProp } from '../types/offers.type';
+import { Location, Host, Offer } from '../types/offers.type';
 import { CITIES, OFFER_TYPES } from '../const/const';
 import { offersByAmsterdam } from './offersByAmsterdam';
 
@@ -16,7 +16,7 @@ const moskHost = ():Host => ({
   name: faker.internet.userName()
 });
 
-export const mockOffer = ():OfferProp => ({
+export const mockOffer = ():Offer => ({
   bedrooms: faker.number.int({ min: 1, max: 5 }),
   city: {
     location: mockLocation(),

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Comment } from '../types/Comments.type';
+import { Comment } from '../types/comments.type';
 
 const mockReview = ():Comment => ({
   comment: faker.lorem.sentences(2),

@@ -1,19 +1,20 @@
-export type CommentsProps = Comment[]
 
-export type Comment = CommentByOfferId & {
+ type Comment = CommentByOfferId & {
   date: string;
   id: number;
   user: User;
 }
 
-export interface User {
+type User = {
   avatarUrl: string;
   id: number;
   isPro: boolean;
   name: string;
 }
 
-export interface CommentByOfferId {
+type CommentByOfferId = {
   comment: string;
   rating: number;
 }
+
+export type { Comment };

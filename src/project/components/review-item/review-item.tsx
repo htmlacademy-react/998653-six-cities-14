@@ -1,4 +1,4 @@
-import { Comment } from '../../types/Comments.type';
+import { Comment } from '../../types/comments.type';
 const dateFormatter = new Intl.DateTimeFormat(
   'en-Us',
   {

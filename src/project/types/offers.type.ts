@@ -1,5 +1,3 @@
-type OfferProp = Offer;
-
 type Offer = OfferPreview & {
   bedrooms: number;
   description: string;
@@ -45,4 +43,4 @@ type Host = {
 
 type OffersByCity = Record<string, OfferPreview[]>;
 
-export type { Offer, OfferPreview, OfferProp, Host, Location, City, OffersByCity };
+export type { Offer, OfferPreview, Host, Location, City, OffersByCity };
