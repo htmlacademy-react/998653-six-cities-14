@@ -8,15 +8,21 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { Offer } from '../../types/offers.type';
 import { Comment } from '../../types/comments.type';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { fetchOffers } from '../../store/actions';
 
 type AppProps = {
-  offers: Offer[];
   reviews: Comment[];
 }
 
-function App({offers, reviews}: AppProps) {
+function App({reviews}: AppProps) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffers());
+  }, [dispatch]);
 
   return (
     <HelmetProvider>
@@ -25,9 +31,7 @@ function App({offers, reviews}: AppProps) {
           <Route
             path={AppRoute.Main}
             element={
-              <MainPage
-                offers={offers}
-              />
+              <MainPage />
             }
           />
           <Route
@@ -57,7 +61,6 @@ function App({offers, reviews}: AppProps) {
             path={`${AppRoute.Offer}/:offerId`} //косяк
             element={
               <OfferPage
-                offers = {offers}
                 reviews={reviews}
               />
             }

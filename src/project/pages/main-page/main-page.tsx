@@ -3,30 +3,17 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/header/header';
-import { OfferPreview, OffersByCity } from '../../types/offers.type';
 import { Cities } from '../../components/cities/cities-component';
-import {useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setActiveCity } from '../../store/actions';
 import { CityMap } from '../../const/const';
 
- type MainPageProps = {
-  offers: OfferPreview[];
-}
+function MainPage() {
+  const activeCity = useAppSelector((state) => state.activeCity);
+  const offersByCity = useAppSelector((state) => state.offers.filter((el) => el.city.name === activeCity.name));
+  const cities = Object.values(CityMap);
 
-function MainPage({ offers } : MainPageProps) {
-
-  const offersByCity: OffersByCity = {};
-  for(const offer of offers) {
-    const cityByOffer = offer.city.name;
-
-    if(!offersByCity[cityByOffer]) {
-      offersByCity[cityByOffer] = [];
-    }
-    offersByCity[cityByOffer].push(offer);
-  }
-  const cities = Object.keys(offersByCity).toSorted();
-
-  const FirstCity = CityMap['Amsterdam'];
-  const [selectedCity, setSelectedCity] = useState(FirstCity.name);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="page page--gray page--main">
@@ -44,20 +31,20 @@ function MainPage({ offers } : MainPageProps) {
                 .map((city) => (
                   <li
                     className="locations__item"
-                    key={city}
+                    key={city.name}
                   >
                     <Link
                       className={classNames(
                         'locations__item-link ',
                         'tabs__item',
                         {
-                          'tabs__item--active' :city === selectedCity,
+                          'tabs__item--active' :city.name === activeCity.name,
                         }
                       )}
-                      to={`#${city.toLowerCase()}`}
-                      onClick={() => setSelectedCity(city)}
+                      to={`#${city.name.toLowerCase()}`}
+                      onClick={() => dispatch(setActiveCity(city))}
                     >
-                      <span>{city}</span>
+                      <span>{city.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -66,8 +53,8 @@ function MainPage({ offers } : MainPageProps) {
           </section>
         </div>
         <Cities
-          offers = {offersByCity[selectedCity]}
-          selectedCity = { selectedCity}
+          offers = {offersByCity}
+          selectedCity = {activeCity}
         />
       </main>
     </div>

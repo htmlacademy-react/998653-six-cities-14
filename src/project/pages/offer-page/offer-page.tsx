@@ -15,12 +15,11 @@ import { fetchNearPlaces, fetchOffer, dropOffer } from '../../store/actions';
 
 
 type OfferPageProps = {
-  offers: Offer[];
   reviews: Comment[];
 }
 
 
-function OfferPage({offers, reviews}: OfferPageProps) {
+function OfferPage({reviews}: OfferPageProps) {
   const { offerId } = useParams();
   const dispatch = useAppDispatch();
   const offer = useAppSelector((state) => state.offer);
@@ -42,6 +41,10 @@ function OfferPage({offers, reviews}: OfferPageProps) {
       dispatch(dropOffer());
     };
   }, [offerId, dispatch]);
+
+  if (!offer) {
+    return null;
+  }
 
   return (
     <div className="page">
@@ -147,7 +150,7 @@ function OfferPage({offers, reviews}: OfferPageProps) {
           </div>
           <Map
             location={ offer.city.location}
-            offers={ offers }
+            offers={ nearPlacesToRender }
             specialOfferId={hoveredOfferId}
           />
         </section>
@@ -155,7 +158,7 @@ function OfferPage({offers, reviews}: OfferPageProps) {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.map((offerPreview) => (
+              {nearPlacesToRender.map((offerPreview) => (
                 <PlaceCardComponent
                   offer={offerPreview}
                   key={offerPreview.id}
