@@ -1,4 +1,5 @@
-export type TLoginData = {
+export type LoginData = {
   emal: string;
   password: string;
 }
+

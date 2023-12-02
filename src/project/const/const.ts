@@ -12,9 +12,12 @@ enum AppRoute {
   NotFound ='/404'
 }
 
-export enum APIRoute {
+enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  NearPlaces = '/nearby',
   Login = '/login',
-  Logout = '/favorites',
 }
 
 
@@ -116,4 +119,4 @@ const SortingMap = {
 } as const;
 
 
-export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace, SortingMap };
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace, SortingMap, APIRoute};

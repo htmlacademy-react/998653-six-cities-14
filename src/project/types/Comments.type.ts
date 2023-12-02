@@ -17,4 +17,4 @@ type CommentByOfferId = {
   rating: number;
 }
 
-export type { Comment };
+export type { Comment, CommentByOfferId };
