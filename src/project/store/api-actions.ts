@@ -7,7 +7,7 @@ import { User } from '../types/user.types';
 import { LoginData } from '../types/login-data';
 
 import { NameSpace, APIRoute } from '../const/const';
-import { saveToken } from '../service/token';
+import { saveToken, dropToken } from '../service/token';
 
 type TExtra = {
   extra: AxiosInstance;
@@ -103,4 +103,15 @@ const login = createAsyncThunk<User, LoginData, TExtra>(
   }
 );
 
-export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login };
+// что сюда пишем?
+const dropLoginSendingStatus = createAsyncThunk<User, LoginData, TExtra>();
+
+const logout = createAsyncThunk<void, undefined, TExtra>(
+  `${NameSpace.User}/logout`,
+  (_arg, { extra: api }) => {
+    api.delete(APIRoute.Logout); // что пришем в адрес?
+    dropToken();
+  }
+);
+
+export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout, dropLoginSendingStatus };
