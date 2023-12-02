@@ -1,4 +1,4 @@
-import { Comment } from '../../types/comments.type';
+import { Comment } from '../../types/Comments.type';
 import { ReviewItem } from '../../components/review-item/review-item';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { faker } from '@faker-js/faker';

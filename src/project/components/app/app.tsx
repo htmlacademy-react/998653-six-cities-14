@@ -8,16 +8,12 @@ import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { Comment } from '../../types/comments.type';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { fetchOffers } from '../../store/actions';
 
-type AppProps = {
-  reviews: Comment[];
-}
 
-function App({reviews}: AppProps) {
+function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -60,9 +56,7 @@ function App({reviews}: AppProps) {
           <Route
             path={`${AppRoute.Offer}/:offerId`} //косяк
             element={
-              <OfferPage
-                reviews={reviews}
-              />
+              <OfferPage/>
             }
           />
           <Route

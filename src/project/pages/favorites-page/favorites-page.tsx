@@ -4,7 +4,7 @@ import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch} from '../../hooks';
 import { useEffect } from 'react';
-import { fetchFavorites } from '../../store/actions';
+import { fetchFavorites } from '../../store/api-actions';
 
 
 function FavoritePage(){

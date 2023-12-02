@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Offer, OfferPreview, } from '../types/offers.type';
-import { Comment, CommentByOfferId } from '../types/comments.type';
+import { Comment, CommentByOfferId } from '../types/Comments.type';
 import { User } from '../types/user.types';
 import { LoginData } from '../types/login-data';
 

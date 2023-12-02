@@ -1,5 +1,3 @@
-import { faker } from '@faker-js/faker';
-
 
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -12,7 +10,6 @@ import { NotFoundPage } from '../404-page/404-page';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffers } from '../../store/actions';
- //
 
 import { RequestStatus, } from '../../const/const';
 
@@ -32,7 +29,7 @@ function MainPage() {
       <Helmet>
         <title>{'6 cities'}</title>
       </Helmet>
-      <Header isAuthorized={faker.datatype.boolean()} />
+      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

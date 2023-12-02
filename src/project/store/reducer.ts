@@ -4,7 +4,7 @@ import { Comment } from '../types/Comments.type';
 import { User } from '../types/user.types';
 import { CityMap, AuthorizationStatus, RequestStatus } from '../const/const';
 import { dropReviewSendingStatus, dropOffer, setActiveCity } from './actions';
-import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, dropLoginSendingStatus, logout } from '../store/api-actions';
+import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout } from '../store/api-actions';
 
 
 const initalState: {
@@ -127,9 +127,9 @@ const reducer = createReducer(initalState, (builder) => {
       state.user = null;
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
-    .addCase(dropLoginSendingStatus, (state) => {
-      state.loginSendingStatus = RequestStatus.Idle;
-    })
+    // .addCase(dropLoginSendingStatus, (state) => {
+    //   state.loginSendingStatus = RequestStatus.Idle;
+    // })
     .addCase(logout.pending, (state) => {
       state.user = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;

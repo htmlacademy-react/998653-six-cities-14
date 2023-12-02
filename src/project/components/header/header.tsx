@@ -1,20 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { AppRoute } from '../../const/const';
-
+import { useAppSelector} from '../../hooks';
+import { RequestStatus } from '../../const/const';
 
 type HeaderProps ={
   hideNavigation?: boolean;
-  isAuthorized?: boolean;
 }
 
 function Header({
   hideNavigation = false,
-  isAuthorized = false
 }: HeaderProps) {
 
   const { pathname } = useLocation();
-
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
   return(
     <header className="header">
       <div className="container">
@@ -42,7 +41,7 @@ function Header({
           { !hideNavigation && (
             <nav className="header__nav">
               <ul className="header__nav-list">
-                {isAuthorized ? (
+                {authStatus === RequestStatus.Error && (
                   <li className="header__nav-item user">
                     <Link
                       className="header__nav-link header__nav-link--profile"
@@ -50,13 +49,14 @@ function Header({
                     >
                       <div className="header__avatar-wrapper user__avatar-wrapper" />
                       <span className="header__user-name user__name">
-                        Oliver.conner@gmail.com
+                      Oliver.conner@gmail.com
                       </span>
                       <span className="header__favorite-count">3</span>
                     </Link>
 
                   </li>
-                ) : (
+                )}
+                {authStatus === RequestStatus.Success && (
                   <li className="header__nav-item">
                     <Link className="header__nav-link" to={AppRoute.Login}>
                       <span className="header__signout">Sign out</span>
