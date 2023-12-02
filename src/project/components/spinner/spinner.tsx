@@ -1,5 +1,5 @@
 
-function spinnerComponent () {
+function SpinnerComponent () {
   return (
     <>
       <p>Loading...</p><p/>
@@ -9,4 +9,4 @@ function spinnerComponent () {
 }
 
 
-export { spinnerComponent };
+export { SpinnerComponent };

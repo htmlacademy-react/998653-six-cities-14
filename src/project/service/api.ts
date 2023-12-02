@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosError, AxiosRequestConfig} from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
 import { getToken } from './token';
+//что за browserHistory
 import { browserHistory } from '../browser-history';
 import { AppRoute } from '../const/const';
 

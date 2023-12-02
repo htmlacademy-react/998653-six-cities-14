@@ -126,4 +126,5 @@ enum RequestStatus {
   Success = 'Success'
 }
 
+
 export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace, SortingMap, APIRoute, RequestStatus };

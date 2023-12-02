@@ -4,7 +4,7 @@ import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch} from '../../hooks';
 import { useEffect } from 'react';
-import { fetchFavoriteOffers } from '../../store/actions';
+import { fetchFavorites } from '../../store/actions';
 
 
 function FavoritePage(){
@@ -14,7 +14,7 @@ function FavoritePage(){
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavoriteOffers());
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   return (
