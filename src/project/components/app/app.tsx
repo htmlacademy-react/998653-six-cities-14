@@ -41,7 +41,7 @@ function App() {
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth} // потом поненять на No
+                restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />

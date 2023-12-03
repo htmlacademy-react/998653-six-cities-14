@@ -37,14 +37,6 @@ function Header() {
                     <span className="header__login">Sign in</span>
                   </Link>}
               </li>
-              {authorizationStatus === AuthorizationStatus.Auth
-                &&
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>}
-
             </ul>
           </nav>
         </div>

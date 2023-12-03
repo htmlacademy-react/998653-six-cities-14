@@ -59,6 +59,7 @@ const MAX_COMMENTS_LENGTH = 1024;
 const MIN_COMMENTS_LENGTH = 12;
 const MAX_REVIEWS_COUNT = 10;
 const MAX_NEAR_PLACES_COUNT = 3;
+const TIMEOUT_SHOW_ERROR = 2000;
 
 const CityMap: Record<string, City> = {
   'Paris': {
@@ -127,4 +128,4 @@ enum RequestStatus {
 }
 
 
-export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace, SortingMap, APIRoute, RequestStatus };
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, TIMEOUT_SHOW_ERROR, CityMap, NameSpace, SortingMap, APIRoute, RequestStatus };
