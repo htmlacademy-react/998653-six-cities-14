@@ -8,7 +8,7 @@ import { Map } from '../../components/map/map';
 import { NotFoundPage } from '../404-page/404-page';
 import { PlaceCardComponent } from '../../components/place-card/place-card';
 import { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch} from '../../hooks';
+import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { MAX_NEAR_PLACES_COUNT } from '../../const/const';
 import { fetchOffer, fetchNearPlaces } from '../../store/api-actions';
 import { dropOffer } from '../../store/actions';

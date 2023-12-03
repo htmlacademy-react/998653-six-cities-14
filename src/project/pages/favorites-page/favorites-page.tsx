@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import { Link } from 'react-router-dom';
-import { useAppSelector, useAppDispatch} from '../../hooks';
+import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
 

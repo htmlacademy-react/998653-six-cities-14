@@ -1,11 +1,11 @@
 
+import styles from './spinner.module.css';
 function SpinnerComponent () {
   return (
-    <>
-      <p>Loading...</p><p/>
-    </>
+    <div className={ styles['shapes-container'] } data-testid="spinnerElem">
+      <div className={ styles.shapes }/>
+    </div>
   );
-
 }
 
 

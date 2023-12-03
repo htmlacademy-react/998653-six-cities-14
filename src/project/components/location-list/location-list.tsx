@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { setActiveCity } from '../../store/actions';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/index';
 import { CITIES } from '../../const/const';
 
 //по какому массиву мы будем мапаться?

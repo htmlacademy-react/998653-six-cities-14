@@ -8,7 +8,7 @@ import { Cities } from '../../components/cities/cities-component';
 import { SpinnerComponent } from '../../components/spinner/spinner';
 import { NotFoundPage } from '../404-page/404-page';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/index';
 import { fetchOffers } from '../../store/actions';
 
 import { RequestStatus, } from '../../const/const';

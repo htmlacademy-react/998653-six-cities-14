@@ -9,8 +9,10 @@ import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/index';
 import { fetchOffers } from '../../store/actions';
+import { browserHistory } from '../../browser-history';
+import HistoryRoute from '../history-route/history-route';
 
 
 function App() {
