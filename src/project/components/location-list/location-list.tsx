@@ -2,9 +2,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { setActiveCity } from '../../store/actions';
 import { useAppDispatch, useAppSelector } from '../../hooks/index';
-import { CITIES } from '../../const/const';
-
-//по какому массиву мы будем мапаться?
+import { CityMap } from '../../const/const';
 
 function LocationList() {
   const activeCity = useAppSelector((state) => state.activeCity);
@@ -13,24 +11,24 @@ function LocationList() {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {CITIES
+        {Object.values(CityMap)
           .map((city) => (
             <li
               className="locations__item"
-              key={city}
+              key={city.name}
             >
               <Link
                 className={classNames(
                   'locations__item-link ',
                   'tabs__item',
                   {
-                    'tabs__item--active' :city === activeCity.name,
+                    'tabs__item--active' :city.name === activeCity.name,
                   }
                 )}
-                to={`#${city.toLowerCase()}`}
+                to={`#${city.name.toLowerCase()}`}
                 onClick={() => dispatch(setActiveCity(city))}
               >
-                <span>{city}</span>
+                <span>{city.name}</span>
               </Link>
             </li>
           ))}
