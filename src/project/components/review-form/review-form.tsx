@@ -1,6 +1,9 @@
-import {Fragment, ChangeEvent, useState } from 'react';
-import { MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH } from '../../const/const';
-
+import {Fragment, ChangeEvent, useState, useEffect } from 'react';
+import { MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, RequestStatus } from '../../const/const';
+import { useAppDispatch, useAppSelector } from '../../hooks/index';
+import { postRewiew } from '../../store/api-actions';
+import { dropReviewSendingStatus } from '../../store/actions';
+import { Offer } from '../../types/offers.type';
 
 const RatingMap = {
   '5': 'perfect',
@@ -11,29 +14,63 @@ const RatingMap = {
 };
 
 type ReviewFormProps = {
-  isAuthorized: boolean;
+  offerId: Offer['id'];
 };
 
-function ReviewForm({ isAuthorized }: ReviewFormProps) {
+function ReviewForm({ offerId }: ReviewFormProps) {
+  const dispatch = useAppDispatch();
+  const sendingStatus = useAppSelector((state) => state.reviewsSendingStatus);
   const [rating, setRating] = useState('');
   const [comment, setComment] = useState('');
 
-  const isValid: boolean =
+  const isValid =
   comment.length >= MIN_COMMENTS_LENGTH &&
   comment.length <= MAX_COMMENTS_LENGTH &&
-  rating !== '' &&
-  isAuthorized !== false;
+  rating !== '';
+
+  const isSending = sendingStatus === RequestStatus.Pending;
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
   };
+
+  const handleFormSubmit = (evt: FormEvent<HTMLElement>) =>{
+    evt.preventDefault();
+
+    dispatch(
+      postRewiew({
+        reviewData: {
+          comment,
+          rating: +rating,
+        },
+        offerId,
+      })
+    );
+  };
+
+  useEffect(() =>{
+    if (sendingStatus === RequestStatus.Success) {
+      setComment('');
+      setRating('');
+      dispatch(dropReviewSendingStatus());
+    }
+  }, [sendingStatus, dispatch]);
 
   const handleTextAreaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(evt.target.value);
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={handleFormSubmit}
+    >
+      {sendingStatus === RequestStatus.Error && (
+        <p>
+          Failed to post review! Please try again!
+        </p>
+      )}
       <label className="reviews__label form__label" htmlFor="review">
           Your review
       </label>

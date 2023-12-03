@@ -6,7 +6,7 @@ const fetchOffers = createAction(`${NameSpace.Offers}/fetchOffers`);
 const fetchOffer = createAction<Offer['id']>(`${NameSpace.Offer}/fetchOffer`);
 const fetchNearPlaces = createAction<Offer['id']>(`${NameSpace.NearPlaces}/fetchNearPlaces`);
 const fetchReviews = createAction<Offer['id']>(`${NameSpace.Reviews}/fetchReviews`);
-//что за действие?
+//что за
 const dropReviewSendingStatus = createAction(`${NameSpace.Reviews}/dropReviewSendingStatus`);
 
 const dropOffer = createAction(`${NameSpace.Offer}/dropOffer`);

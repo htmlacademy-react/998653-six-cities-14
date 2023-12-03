@@ -18,7 +18,7 @@ enum APIRoute {
   Comments = '/comments',
   NearPlaces = '/nearby',
   Login = '/login',
-  Logout = '/logout', //  что сюда пишем?
+  Logout = '/logout'
 }
 
 

@@ -7,16 +7,20 @@ import { MainPage } from '../../pages/main-page/main-page';
 import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
+import { SpinnerComponent } from '../../components/spinner/spinner';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/index';
-import { fetchOffers } from '../../store/actions';
-import { browserHistory } from '../../browser-history';
-import HistoryRoute from '../history-route/history-route';
+import { fetchOffers } from '../../store/api-actions';
 
 
 function App() {
   const dispatch = useAppDispatch();
+  const isOffersLoading = useAppSelector((state) => state.offersFetchingStatus);
+
+  if(!isOffersLoading) {
+    <SpinnerComponent />;
+  }
 
   useEffect(() => {
     dispatch(fetchOffers());

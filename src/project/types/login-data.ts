@@ -3,3 +3,8 @@ export type LoginData = {
   password: string;
 }
 
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+};
