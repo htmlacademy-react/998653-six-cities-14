@@ -17,8 +17,9 @@ import { fetchOffers } from '../../store/api-actions';
 function App() {
   const dispatch = useAppDispatch();
   const isOffersLoading = useAppSelector((state) => state.offersFetchingStatus);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  if(!isOffersLoading) {
+  if(!isOffersLoading || authorizationStatus === AuthorizationStatus.NoAuth) {
     <SpinnerComponent />;
   }
 
