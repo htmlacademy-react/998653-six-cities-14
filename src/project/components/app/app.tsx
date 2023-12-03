@@ -1,6 +1,7 @@
-import {BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import { MainPage } from '../../pages/main-page/main-page';
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -71,7 +72,7 @@ function App() {
             element={<NotFoundPage />}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
 
   );
