@@ -2,6 +2,9 @@ import { OfferPreview } from '../../types/offers.type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 import classNames from 'classnames';
+import { fetchAddToFavoriteAction } from '../../store/api-actions';
+import { useState } from 'react';
+import { useAppDispatch} from '../../hooks/index';
 
 type PlaceCardComponentProps = {
   offer: OfferPreview;
@@ -10,6 +13,14 @@ type PlaceCardComponentProps = {
 
 function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
   const { isPremium, previewImage, price, type, title, id, isFavorite} = offer;
+  const [isBookmarkActive, setBookmarkActive] = useState(isFavorite);
+  const dispatch = useAppDispatch();
+
+  const handleFavoriteButtonClick = () => {
+
+    dispatch(fetchAddToFavoriteAction({ id, status: Number(!isBookmarkActive) }));
+    setBookmarkActive((prev) => !prev);
+  };
 
   const handleMouseEnter = () => {
     onCardHover?.(id);
@@ -55,6 +66,7 @@ function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
                 'place-card__bookmark-button--active ': isFavorite === true,
               })}
             type="button"
+            onClick={ handleFavoriteButtonClick }
           >
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />

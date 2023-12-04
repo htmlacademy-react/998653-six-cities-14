@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Offer, OfferPreview, } from '../types/offers.type';
+import { Offer, OfferPreview, AddToFavoritesData } from '../types/offers.type';
 import { Comment, CommentByOfferId } from '../types/comments.type';
 import { TState, TAppDispatch } from '../types/state.type';
 import { User } from '../types/user.types';
@@ -88,6 +88,14 @@ const fetchFavorites = createAsyncThunk<
 
     return data;
   }
+);
+
+export const fetchAddToFavoriteAction = createAsyncThunk<OfferPreview, AddToFavoritesData, TExtra >(
+  'data/fetchAddToFavoriteAction',
+  async ({ id, status }, { extra: api }) => {
+    const { data } = await api.post<OfferPreview>(`${APIRoute.Favorite}/${id}/${status}`);
+    return data;
+  },
 );
 
 const checkAuth = createAsyncThunk<User, undefined, TExtra>(

@@ -3,7 +3,7 @@ import { Offer, OfferPreview, City } from '../types/offers.type';
 import { Comment } from '../types/comments.type';
 import { User } from '../types/user.types';
 import { CityMap, AuthorizationStatus, RequestStatus } from '../const/const';
-import { dropReviewSendingStatus, dropOffer, setActiveCity, setError } from './actions';
+import { dropReviewSendingStatus, dropOffer, setActiveCity } from './actions';
 import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout } from '../store/api-actions';
 
 

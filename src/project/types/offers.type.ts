@@ -41,6 +41,10 @@ type Host = {
   name: string;
 }
 
+type AddToFavoritesData = {
+  id: string;
+  status: number;
+};
 type OffersByCity = Record<string, OfferPreview[]>;
 
-export type { Offer, OfferPreview, Host, Location, City, OffersByCity };
+export type { Offer, OfferPreview, Host, Location, City, OffersByCity, AddToFavoritesData};
