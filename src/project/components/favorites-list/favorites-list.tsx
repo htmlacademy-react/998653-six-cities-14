@@ -2,13 +2,13 @@ import { FavoriteCard } from '../../components/favorite-card/favorite-card';
 import { Link } from 'react-router-dom';
 import { OfferPreview } from '../../types/offers.type';
 
-type FavoritesListProps = [
-  offers: OfferPreview[],
-];
+type FavoritesListProps = {
+  offers: OfferPreview[];
+};
 
 function FavoritesList ({offers}: FavoritesListProps){
   //избранные офферы для активного города
-  const CitiesList = new Set(offers.map((offer) => offer.city.name)).toSorted();
+  const CitiesList = [...new Set(offers.map((offer) => offer.city.name))].sort();
 
   return(
     <ul className="favorites__list">
@@ -30,7 +30,6 @@ function FavoritesList ({offers}: FavoritesListProps){
           </div>
         </li>
       ))}
-
     </ul>
   );
 }
