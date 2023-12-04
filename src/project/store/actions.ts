@@ -1,13 +1,11 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Offer, City } from '../types/offers.type';
-import { NameSpace } from '../const/const';
+import { City } from '../types/offers.type';
+import { AppRoute, NameSpace } from '../const/const';
 
-const fetchOffers = createAction(`${NameSpace.Offers}/fetchOffers`);
-const fetchOffer = createAction<Offer['id']>(`${NameSpace.Offer}/fetchOffer`);
-const fetchNearPlaces = createAction<Offer['id']>(`${NameSpace.NearPlaces}/fetchNearPlaces`);
-const fetchReviews = createAction<Offer['id']>(`${NameSpace.Reviews}/fetchReviews`);
+const dropReviewSendingStatus = createAction(`${NameSpace.Reviews}/dropReviewSendingStatus`);
 const dropOffer = createAction(`${NameSpace.Offer}/dropOffer`);
 const setActiveCity = createAction<City>(`${NameSpace.Offers}/setActiveCity`);
-const fetchFavoriteOffers = createAction(`${NameSpace.Favorites}/FavoriteOffers`);
+const setError = createAction<Error>('app/setError');
+const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
 
-export {fetchOffers, fetchOffer, fetchNearPlaces, fetchReviews, dropOffer, setActiveCity, fetchFavoriteOffers};
+export {dropReviewSendingStatus, dropOffer, setActiveCity, setError, redirectToRoute };

@@ -12,6 +12,16 @@ enum AppRoute {
   NotFound ='/404'
 }
 
+enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  NearPlaces = '/nearby',
+  Login = '/login',
+  Logout = '/logout'
+}
+
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -49,6 +59,7 @@ const MAX_COMMENTS_LENGTH = 1024;
 const MIN_COMMENTS_LENGTH = 12;
 const MAX_REVIEWS_COUNT = 10;
 const MAX_NEAR_PLACES_COUNT = 3;
+const TIMEOUT_SHOW_ERROR = 2000;
 
 const CityMap: Record<string, City> = {
   'Paris': {
@@ -109,5 +120,12 @@ const SortingMap = {
 
 } as const;
 
+enum RequestStatus {
+  Idle = 'Idle',
+  Pending = 'Pending',
+  Error = 'Error',
+  Success = 'Success'
+}
 
-export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, CityMap, NameSpace, SortingMap };
+
+export { RentQuantity, AppRoute, AuthorizationStatus, CITIES, OFFER_TYPES, MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, MAX_REVIEWS_COUNT, MAX_NEAR_PLACES_COUNT, TIMEOUT_SHOW_ERROR, CityMap, NameSpace, SortingMap, APIRoute, RequestStatus };

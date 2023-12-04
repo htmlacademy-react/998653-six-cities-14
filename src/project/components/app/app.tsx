@@ -1,24 +1,28 @@
-import {BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-
+import HistoryRouter from '../history-route/history-route';
+import {browserHistory} from '../../browser-history';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import { MainPage } from '../../pages/main-page/main-page';
 import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
+import { SpinnerComponent } from '../../components/spinner/spinner';
 import { OfferPage } from '../../pages/offer-page/offer-page';
-import { Comment } from '../../types/comments.type';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { fetchOffers } from '../../store/actions';
+import { useAppDispatch, useAppSelector } from '../../hooks/index';
+import { fetchOffers } from '../../store/api-actions';
 
-type AppProps = {
-  reviews: Comment[];
-}
 
-function App({reviews}: AppProps) {
+function App() {
   const dispatch = useAppDispatch();
+  const isOffersLoading = useAppSelector((state) => state.offersFetchingStatus);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if(!isOffersLoading || authorizationStatus === AuthorizationStatus.NoAuth) {
+    <SpinnerComponent />;
+  }
 
   useEffect(() => {
     dispatch(fetchOffers());
@@ -26,7 +30,7 @@ function App({reviews}: AppProps) {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -38,7 +42,7 @@ function App({reviews}: AppProps) {
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth} // потом поненять на No
+                restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />
@@ -58,11 +62,9 @@ function App({reviews}: AppProps) {
           />
 
           <Route
-            path={`${AppRoute.Offer}/:offerId`} //косяк
+            path={`${AppRoute.Offer}/:offerId`}
             element={
-              <OfferPage
-                reviews={reviews}
-              />
+              <OfferPage/>
             }
           />
           <Route
@@ -70,7 +72,7 @@ function App({reviews}: AppProps) {
             element={<NotFoundPage />}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
 
   );

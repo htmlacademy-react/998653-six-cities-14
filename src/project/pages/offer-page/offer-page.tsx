@@ -2,30 +2,24 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { Offer } from '../../types/offers.type';
-import { Comment } from '../../types/comments.type';
 import { ReviewList } from '../../components/review-list/review-list';
 import classNames from 'classnames';
-import { faker } from '@faker-js/faker';
 import { Map } from '../../components/map/map';
+import { NotFoundPage } from '../404-page/404-page';
 import { PlaceCardComponent } from '../../components/place-card/place-card';
 import { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch} from '../../hooks';
+import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { MAX_NEAR_PLACES_COUNT } from '../../const/const';
-import { fetchNearPlaces, fetchOffer, dropOffer } from '../../store/actions';
+import { fetchOffer, fetchNearPlaces } from '../../store/api-actions';
+import { dropOffer } from '../../store/actions';
 
-
-type OfferPageProps = {
-  reviews: Comment[];
-}
-
-
-function OfferPage({reviews}: OfferPageProps) {
+function OfferPage() {
   const { offerId } = useParams();
   const dispatch = useAppDispatch();
   const offer = useAppSelector((state) => state.offer);
   const nearPlaces = useAppSelector((state) => state.nearPlaces);
   const nearPlacesToRender = nearPlaces.slice(0, MAX_NEAR_PLACES_COUNT);
-
+  const reviews = useAppSelector((state) => state.reviews);
   const [hoveredOfferId, setHoveredOfferId] = useState<Offer['id'] | null >(null);
   const handleCardHover = (id: Offer['id'] | null) => {
     setHoveredOfferId(id);
@@ -44,6 +38,7 @@ function OfferPage({reviews}: OfferPageProps) {
 
   if (!offer) {
     return null;
+    <NotFoundPage />;
   }
 
   return (
@@ -51,7 +46,8 @@ function OfferPage({reviews}: OfferPageProps) {
       <Helmet>
         <title>{`6 cities - ${offer.title}`}</title>
       </Helmet>
-      <Header isAuthorized={faker.datatype.boolean()} />
+      <Header/>
+
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
