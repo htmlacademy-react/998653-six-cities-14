@@ -3,16 +3,22 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Offer, OfferPreview, } from '../types/offers.type';
 import { Comment, CommentByOfferId } from '../types/Comments.type';
+import { TState, TAppDispatch } from '../types/state.type';
 import { User } from '../types/user.types';
 import { LoginData } from '../types/login-data';
 
-import { NameSpace, APIRoute } from '../const/const';
+import { NameSpace, APIRoute, AppRoute } from '../const/const';
 import { saveToken, dropToken } from '../service/token';
+import { redirectToRoute} from '../store/actions';
 
 type TExtra = {
   extra: AxiosInstance;
 };
 
+type TLogin = TExtra & {
+  dispatch: TAppDispatch;
+  state: TState;
+}
 const fetchOffers = createAsyncThunk<OfferPreview[], undefined, TExtra>(
   `${NameSpace.Offers}/fetchOffers`,
   async(_arg, { extra: api }) => {
@@ -93,13 +99,14 @@ const checkAuth = createAsyncThunk<User, undefined, TExtra>(
   }
 );
 
-const login = createAsyncThunk<User, LoginData, TExtra>(
+const login = createAsyncThunk<User, LoginData, TLogin>(
   `${NameSpace.User}/login`,
   async(loginData, { extra: api }) => {
     const { data } = await api.post<User>(APIRoute.Login, loginData);
     saveToken(data.token);
 
-    return data;
+    return data; // надо возвращать?
+    dispatch(redirectToRoute(AppRoute.Main)); //если пользователь залогинен - куда переправляем
   }
 );
 
@@ -109,7 +116,7 @@ const dropLoginSendingStatus = createAsyncThunk<User, LoginData, TExtra>();
 const logout = createAsyncThunk<void, undefined, TExtra>(
   `${NameSpace.User}/logout`,
   (_arg, { extra: api }) => {
-    api.delete(APIRoute.Logout); // что пришем в адрес?
+    api.delete(APIRoute.Logout);
     dropToken();
   }
 );

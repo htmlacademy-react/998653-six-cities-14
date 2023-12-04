@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
-import { useAppSelector} from '../../hooks';
+import { useAppSelector, useAppDispatch} from '../../hooks';
 import { Logo } from '../../components/logo/logo';
+import { logout } from '../../store/api-actions';
 
 function Header() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const dispatch = useAppDispatch();
+
+  const handleLogoutClick = () => {
+    dispatch(logout());
+  };
 
   return(
     <header className="header">
@@ -37,6 +43,17 @@ function Header() {
                     <span className="header__login">Sign in</span>
                   </Link>}
               </li>
+              {authorizationStatus === AuthorizationStatus.Auth
+                &&
+                <li className="header__nav-item">
+                  <Link
+                    className="header__nav-link"
+                    to={'/'}
+                    onClick={handleLogoutClick}
+                  >
+                    <span className="header__signout">Sign out</span>
+                  </Link>
+                </li>}
             </ul>
           </nav>
         </div>
