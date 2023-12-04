@@ -27,8 +27,9 @@ function ReviewForm({ offerId }: ReviewFormProps) {
   comment.length >= MIN_COMMENTS_LENGTH &&
   comment.length <= MAX_COMMENTS_LENGTH &&
   rating !== '';
-
+]
   // const isSending = sendingStatus === RequestStatus.Pending;
+
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
