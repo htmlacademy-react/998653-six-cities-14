@@ -17,8 +17,7 @@ function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
   const dispatch = useAppDispatch();
 
   const handleFavoriteButtonClick = () => {
-
-    dispatch(fetchAddToFavoriteAction({ id, status: Number(!isBookmarkActive) }));
+    dispatch(fetchAddToFavoriteAction({ id, status: Number(!isBookmarkActive)}));
     setBookmarkActive((prev) => !prev);
   };
 
