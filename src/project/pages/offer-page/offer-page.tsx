@@ -5,18 +5,19 @@ import { Offer } from '../../types/offers.type';
 import { ReviewList } from '../../components/review-list/review-list';
 import classNames from 'classnames';
 import { Map } from '../../components/map/map';
-import { NotFoundPage } from '../404-page/404-page';
+import { SpinnerComponent } from '../../components/spinner/spinner';
 import { PlaceCardComponent } from '../../components/place-card/place-card';
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { MAX_NEAR_PLACES_COUNT } from '../../const/const';
-import { fetchOffer, fetchNearPlaces } from '../../store/api-actions';
+import { fetchOffer, fetchNearPlaces, fetchReviews} from '../../store/api-actions';
 import { dropOffer } from '../../store/actions';
 
 function OfferPage() {
   const { offerId } = useParams();
   const dispatch = useAppDispatch();
   const offer = useAppSelector((state) => state.offer);
+  const isOffersLoaded = useAppSelector((state) => state.offersFetchingStatus);
   const nearPlaces = useAppSelector((state) => state.nearPlaces);
   const nearPlacesToRender = nearPlaces.slice(0, MAX_NEAR_PLACES_COUNT);
   const reviews = useAppSelector((state) => state.reviews);
@@ -29,6 +30,7 @@ function OfferPage() {
     if(offerId) {
       dispatch(fetchOffer(offerId));
       dispatch(fetchNearPlaces(offerId));
+      dispatch(fetchReviews(offerId));
     }
 
     return () => {
@@ -37,8 +39,12 @@ function OfferPage() {
   }, [offerId, dispatch]);
 
   if (!offer) {
-    return null;
-    <NotFoundPage />;
+    return <SpinnerComponent />;
+  }
+
+  //нам нужна эта проверка?
+  if(!isOffersLoaded) {
+    return <SpinnerComponent />;
   }
 
   return (
