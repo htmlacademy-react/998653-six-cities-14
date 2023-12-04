@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer, OfferPreview, City } from '../types/offers.type';
-import { Comment } from '../types/Comments.type';
+import { Comment } from '../types/comments.type';
 import { User } from '../types/user.types';
 import { CityMap, AuthorizationStatus, RequestStatus } from '../const/const';
 import { dropReviewSendingStatus, dropOffer, setActiveCity, setError } from './actions';
@@ -22,7 +22,6 @@ const initalState: {
   authorizationStatus: AuthorizationStatus;
   user: User;
   loginSendingStatus: RequestStatus;
-  error: Error;
 } = {
   offers: [],
   offersFetchingStatus: RequestStatus.Idle,
@@ -39,9 +38,6 @@ const initalState: {
   user: null, // неправильный тип для авторизованного пользователя  = посмотреть спеку:
   // https://14.design.pages.academy/spec/project/six-cities
   loginSendingStatus: RequestStatus.Idle,
-  error: null,
-
-
 };
 
 const reducer = createReducer(initalState, (builder) => {
@@ -137,10 +133,6 @@ const reducer = createReducer(initalState, (builder) => {
     .addCase(logout.pending, (state) => {
       state.user = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     });
-
 });
 export { reducer };

@@ -62,7 +62,7 @@ function App() {
           />
 
           <Route
-            path={`${AppRoute.Offer}/:offerId`} //косяк
+            path={`${AppRoute.Offer}/:offerId`}
             element={
               <OfferPage/>
             }

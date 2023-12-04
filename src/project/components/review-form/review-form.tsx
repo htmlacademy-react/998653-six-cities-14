@@ -1,4 +1,4 @@
-import {Fragment, ChangeEvent, useState, useEffect } from 'react';
+import {Fragment, ChangeEvent, useState, useEffect, FormEvent } from 'react';
 import { MAX_COMMENTS_LENGTH, MIN_COMMENTS_LENGTH, RequestStatus } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/index';
 import { postRewiew } from '../../store/api-actions';
@@ -34,12 +34,12 @@ function ReviewForm({ offerId }: ReviewFormProps) {
     setRating(evt.target.value);
   };
 
-  const handleFormSubmit = (evt: FormEvent<HTMLElement>) =>{
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     dispatch(
       postRewiew({
-        reviewData: {
+        commentByOfferId: {
           comment,
           rating: +rating,
         },

@@ -2,14 +2,14 @@ import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Offer, OfferPreview, } from '../types/offers.type';
-import { Comment, CommentByOfferId } from '../types/Comments.type';
+import { Comment, CommentByOfferId } from '../types/comments.type';
 import { TState, TAppDispatch } from '../types/state.type';
 import { User } from '../types/user.types';
 import { LoginData } from '../types/login-data';
 
-import { NameSpace, APIRoute, AppRoute } from '../const/const';
+import { NameSpace, APIRoute } from '../const/const';
 import { saveToken, dropToken } from '../service/token';
-import { redirectToRoute} from '../store/actions';
+
 
 type TExtra = {
   extra: AxiosInstance;
@@ -106,7 +106,7 @@ const login = createAsyncThunk<User, LoginData, TLogin>(
     saveToken(data.token);
 
     return data; // надо возвращать?
-    dispatch(redirectToRoute(AppRoute.Main)); //если пользователь залогинен - куда переправляем
+
   }
 );
 
