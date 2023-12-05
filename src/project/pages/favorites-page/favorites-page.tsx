@@ -4,16 +4,28 @@ import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
 import { FavoritesList } from '../../components/favorites-list/favorites-list';
+import { RequestStatus } from '../../const/const';
+import { SpinnerComponent } from '../../components/spinner/spinner';
+import { FavoritesEmptyPage } from './favorites-empty';
 
 
 function FavoritePage(){
   const favorites = useAppSelector((state) => state.favorites);
+  const favoritesStatus = useAppSelector((state) => state.favoritesFetchingStatus);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
+
+  if (favoritesStatus === RequestStatus.Pending) {
+    return <SpinnerComponent />;
+  }
+
+  if (favorites.length === 0) {
+    return <FavoritesEmptyPage />;
+  }
 
   return (
     <div className="page">

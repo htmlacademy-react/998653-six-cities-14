@@ -1,15 +1,19 @@
-import { Comment } from '../../types/comments.type';
+import { Comment } from '../../types/Comments.type';
 import { ReviewItem } from '../../components/review-item/review-item';
 import { ReviewForm } from '../../components/review-form/review-form';
-import { MAX_REVIEWS_COUNT } from '../../const/const';
+import { AuthorizationStatus, MAX_REVIEWS_COUNT } from '../../const/const';
+import { Offer } from '../../types/offers.type';
+import { useAppSelector } from '../../hooks';
 
 
 type ReviewFormProps ={
+  offerId: Offer['id'];
   reviews: Comment[];
 };
 
-function ReviewList ({reviews}: ReviewFormProps) {
+function ReviewList ({offerId, reviews}: ReviewFormProps) {
   const sortedReviews = reviews.slice().sort((reviewA, reviewB) => new Date(reviewB.date).getTime() - new Date(reviewA.date).getTime());
+  const isAuthorized = useAppSelector((state) => state.authorizationStatus === AuthorizationStatus.Auth);
 
   return (
     <>
@@ -23,7 +27,7 @@ function ReviewList ({reviews}: ReviewFormProps) {
           ))}
         </div>
       </ul>
-      <ReviewForm offerId={'хз'} />
+      {isAuthorized && <ReviewForm offerId={offerId} />}
     </>
   );
 }

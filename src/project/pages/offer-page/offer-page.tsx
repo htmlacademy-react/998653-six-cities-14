@@ -12,6 +12,7 @@ import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { MAX_NEAR_PLACES_COUNT } from '../../const/const';
 import { fetchOffer, fetchNearPlaces, fetchReviews} from '../../store/api-actions';
 import { dropOffer } from '../../store/actions';
+import { useToggleFavorite } from '../../hooks/use-toggle-favorite';
 
 function OfferPage() {
   const { offerId } = useParams();
@@ -25,6 +26,7 @@ function OfferPage() {
   const handleCardHover = (id: Offer['id'] | null) => {
     setHoveredOfferId(id);
   };
+  const handleFavoriteButtonClick = useToggleFavorite(offer?.id, offer?.isFavorite);
 
   useEffect(() =>{
     if(offerId) {
@@ -38,12 +40,8 @@ function OfferPage() {
     };
   }, [offerId, dispatch]);
 
-  if (!offer) {
-    return <SpinnerComponent />;
-  }
-
   //нам нужна эта проверка?
-  if(!isOffersLoaded) {
+  if(!offer || !isOffersLoaded) {
     return <SpinnerComponent />;
   }
 
@@ -75,7 +73,7 @@ function OfferPage() {
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{offer.title}</h1>
-                <button className="offer__bookmark-button button" type="button">
+                <button className={classNames('offer__bookmark-button', 'button', {'offer__bookmark-button--active': offer.isFavorite})} type="button" onClick={handleFavoriteButtonClick}>
                   <svg className="offer__bookmark-icon" width={31} height={33}>
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
@@ -84,7 +82,7 @@ function OfferPage() {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }} />
+                  <span style={{ width: `${20 * offer.rating}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -144,9 +142,9 @@ function OfferPage() {
               </div>
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
-                 Reviews · <span className="reviews__amount">1</span>
+                 Reviews · <span className="reviews__amount">{reviews.length}</span>
                 </h2>
-                <ReviewList reviews={reviews}/>
+                <ReviewList offerId={offer.id} reviews={reviews}/>
               </section>
             </div>
           </div>

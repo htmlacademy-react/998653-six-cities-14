@@ -1,4 +1,4 @@
-import {TToken } from '../types/token';
+import { TToken } from '../types/token';
 
 const AUTH_TOKEN_NAME = 'six-cities-token';
 
@@ -15,4 +15,4 @@ const dropToken = () => {
   localStorage.removeItem(AUTH_TOKEN_NAME);
 };
 
-export {getToken, saveToken, dropToken };
+export { getToken, saveToken, dropToken };

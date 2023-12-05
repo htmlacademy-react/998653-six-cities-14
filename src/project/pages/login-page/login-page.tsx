@@ -2,30 +2,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
 import { FormEvent, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { LoginData } from '../../types/login-data';
 import { login } from '../../store/api-actions';
 import { AppRoute } from '../../const/const';
+import { useAppDispatch } from '../../hooks';
 
 function LoginPage() {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const onSubmit = (auth: LoginData) => {
-    dispatch(login(auth));
-  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if(loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      dispatch(login({
         email: loginRef.current.value,
         password: passwordRef.current.value,
-      });
+      }));
       navigate(AppRoute.Main);
     }
   };
@@ -64,6 +59,8 @@ function LoginPage() {
                 type="password"
                 name="password"
                 placeholder="Password"
+                minLength={3}
+                pattern='^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'
                 required
               />
             </div>

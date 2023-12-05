@@ -2,9 +2,7 @@ import { OfferPreview } from '../../types/offers.type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 import classNames from 'classnames';
-import { fetchAddToFavoriteAction } from '../../store/api-actions';
-import { useState } from 'react';
-import { useAppDispatch} from '../../hooks/index';
+import { useToggleFavorite } from '../../hooks/use-toggle-favorite';
 
 type PlaceCardComponentProps = {
   offer: OfferPreview;
@@ -13,13 +11,7 @@ type PlaceCardComponentProps = {
 
 function PlaceCardComponent({ offer, onCardHover }: PlaceCardComponentProps) {
   const { isPremium, previewImage, price, type, title, id, isFavorite} = offer;
-  const [isBookmarkActive, setBookmarkActive] = useState(isFavorite);
-  const dispatch = useAppDispatch();
-
-  const handleFavoriteButtonClick = () => {
-    dispatch(fetchAddToFavoriteAction({ id, status: Number(!isBookmarkActive)}));
-    setBookmarkActive((prev) => !prev);
-  };
+  const handleFavoriteButtonClick = useToggleFavorite(id, isFavorite);
 
   const handleMouseEnter = () => {
     onCardHover?.(id);

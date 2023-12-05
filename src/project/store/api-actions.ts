@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Offer, OfferPreview, AddToFavoritesData } from '../types/offers.type';
-import { Comment, CommentByOfferId } from '../types/comments.type';
+import { Comment, CommentByOfferId } from '../types/Comments.type';
 import { TState, TAppDispatch } from '../types/state.type';
 import { User } from '../types/user.types';
 import { LoginData } from '../types/login-data';
@@ -70,7 +70,7 @@ const fetchNearPlaces = createAsyncThunk<
     `${NameSpace.NearPlaces}/fetchNearPlaces`,
     async(offerId, { extra: api }) => {
       const { data } = await api.get<OfferPreview[]>(
-        `${APIRoute.Offers}/${offerId}${APIRoute.NearPlaces}}`
+        `${APIRoute.Offers}/${offerId}${APIRoute.NearPlaces}`
       );
 
       return data;
@@ -90,8 +90,8 @@ const fetchFavorites = createAsyncThunk<
   }
 );
 
-export const fetchAddToFavoriteAction = createAsyncThunk<OfferPreview, AddToFavoritesData, TExtra >(
-  'data/fetchAddToFavoriteAction',
+export const fetchToggleFavoriteAction = createAsyncThunk<OfferPreview, AddToFavoritesData, TExtra >(
+  'data/fetchToggleFavoriteAction',
   async ({ id, status }, { extra: api }) => {
     const { data } = await api.post<OfferPreview>(`${APIRoute.Favorite}/${id}/${status}`);
     return data;
@@ -113,8 +113,7 @@ const login = createAsyncThunk<User, LoginData, TLogin>(
     const { data } = await api.post<User>(APIRoute.Login, loginData);
     saveToken(data.token);
 
-    return data; // надо возвращать?
-
+    return data; // надо возвращать? Надо, так как ты определила тип payload как User, эти данные ты потом записываешь в стор
   }
 );
 
@@ -123,8 +122,8 @@ const dropLoginSendingStatus = createAsyncThunk<User, LoginData, TExtra>();
 
 const logout = createAsyncThunk<void, undefined, TExtra>(
   `${NameSpace.User}/logout`,
-  (_arg, { extra: api }) => {
-    api.delete(APIRoute.Logout);
+  async (_arg, { extra: api }) => {
+    await api.delete(APIRoute.Logout);
     dropToken();
   }
 );

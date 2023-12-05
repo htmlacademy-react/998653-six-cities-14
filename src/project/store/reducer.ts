@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer, OfferPreview, City } from '../types/offers.type';
-import { Comment } from '../types/comments.type';
+import { Comment } from '../types/Comments.type';
 import { User } from '../types/user.types';
 import { CityMap, AuthorizationStatus, RequestStatus } from '../const/const';
 import { dropReviewSendingStatus, dropOffer, setActiveCity } from './actions';
-import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout } from '../store/api-actions';
+import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout, fetchToggleFavoriteAction } from '../store/api-actions';
 
 
 const initalState: {
@@ -20,7 +20,7 @@ const initalState: {
   favoritesFetchingStatus: RequestStatus;
   activeCity: City;
   authorizationStatus: AuthorizationStatus;
-  user: User;
+  user: User | null;
   loginSendingStatus: RequestStatus;
 } = {
   offers: [],
@@ -35,8 +35,7 @@ const initalState: {
   favoritesFetchingStatus: RequestStatus.Idle,
   activeCity: CityMap.Paris,
   authorizationStatus: AuthorizationStatus.Unknown,
-  user: null, // неправильный тип для авторизованного пользователя  = посмотреть спеку:
-  // https://14.design.pages.academy/spec/project/six-cities
+  user: null,
   loginSendingStatus: RequestStatus.Idle,
 };
 
@@ -105,6 +104,19 @@ const reducer = createReducer(initalState, (builder) => {
     .addCase(fetchFavorites.rejected, (state) => {
       state.favoritesFetchingStatus = RequestStatus.Error;
     })
+    .addCase(fetchToggleFavoriteAction.fulfilled, (state, action) => {
+      const idx = state.offers.findIndex((el) => el.id === action.payload.id);
+      state.offers[idx] = action.payload;
+      if (action.payload.isFavorite) {
+        state.favorites.push(action.payload);
+      } else {
+        state.favorites = state.favorites.filter((el) => el.id !== action.payload.id);
+      }
+
+      if (state.offer?.id === action.payload.id) {
+        state.offer.isFavorite = action.payload.isFavorite;
+      }
+    })
     .addCase(checkAuth.pending, (state) => {
       state.user = null;
       state.authorizationStatus = AuthorizationStatus.Unknown;
@@ -113,8 +125,8 @@ const reducer = createReducer(initalState, (builder) => {
       state.user = action.payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
-    .addCase(checkAuth.rejected, (state, action) => {
-      state.user = action.payload;
+    .addCase(checkAuth.rejected, (state) => {
+      state.user = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;
     })
     .addCase(login.fulfilled, (state, action) => {
