@@ -24,7 +24,6 @@ function useMap (
         zoom: city.zoom,
       });
 
-
       new TileLayer(TILE_LAYER,{
         attribution: COPY_RIGHT
       })
