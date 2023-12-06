@@ -1,8 +1,8 @@
-import { PlaceCardComponent } from '../../components/place-card/place-card';
+import { PlaceCardComponent } from '../place-card/place-card';
 import { City, OfferPreview } from '../../types/offers.type';
 import { useState } from 'react';
-import { Map } from'../../components/map/map';
-import { Sorting } from '../../components/sorting/sorting';
+import { Map } from'../map/map';
+import { Sorting } from '../sorting/sorting';
 import { TSorting } from '../../types/sorting.type';
 import { SortingMap } from '../../const/const';
 import { sorting } from '../../utils/offer';

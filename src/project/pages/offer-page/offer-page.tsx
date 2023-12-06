@@ -14,6 +14,8 @@ import { dropOffer } from '../../store/actions';
 import { useToggleFavorite } from '../../hooks/use-toggle-favorite';
 import { getRatingWidth } from '../../utils/offer';
 import { NotFoundPage } from '../404-page/404-page';
+import { setCapitalLetter } from '../../utils/utils';
+
 
 function OfferPage() {
   const { offerId } = useParams();
@@ -85,7 +87,7 @@ function OfferPage() {
                   <span className="offer__rating-value rating__value">{offer.rating}</span>
                 </div>
                 <ul className="offer__features">
-                  <li className="offer__feature offer__feature--entire">{offer.type}</li>
+                  <li className="offer__feature offer__feature--entire">{setCapitalLetter(offer.type)}</li>
                   <li className="offer__feature offer__feature--bedrooms">
                     {offer.bedrooms} Bedrooms
                   </li>

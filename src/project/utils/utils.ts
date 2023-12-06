@@ -8,5 +8,7 @@ function getIndexValue<T extends number>(index: T){
 
 const placeCountArr = Array.from({length: PLACE_COUNT_DEFAULT}, (_, index,) => getIndexValue(index));
 
+const setCapitalLetter = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1);
 
-export { placeCountArr};
+export { placeCountArr, setCapitalLetter};
