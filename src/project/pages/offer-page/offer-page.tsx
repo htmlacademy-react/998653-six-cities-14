@@ -16,7 +16,6 @@ import { getRatingWidth } from '../../utils/offer';
 import { NotFoundPage } from '../404-page/404-page';
 import { setCapitalLetter } from '../../utils/utils';
 
-
 function OfferPage() {
   const { offerId } = useParams();
   const dispatch = useAppDispatch();
