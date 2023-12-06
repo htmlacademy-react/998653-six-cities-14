@@ -4,5 +4,4 @@ function SpinnerComponent () {
   );
 }
 
-
 export { SpinnerComponent };

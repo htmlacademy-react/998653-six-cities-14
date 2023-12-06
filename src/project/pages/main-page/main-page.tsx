@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { Header } from '../../components/header/header';
 import { LocationList } from '../../components/location-list/location-list';
-import { Cities } from '../../components/cities/cities-component';
+import { Cities } from '../../components/cities/cities';
 import { SpinnerComponent } from '../../components/spinner/spinner';
 import { NotFoundPage } from '../404-page/404-page';
 
