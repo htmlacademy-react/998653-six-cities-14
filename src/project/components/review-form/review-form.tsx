@@ -8,7 +8,7 @@ import { Offer } from '../../types/offers.type';
 const RatingMap = {
   '5': 'perfect',
   '4': 'good',
-  '3': 'good',
+  '3': 'not bad',
   '2': 'badly',
   '1': 'terribly'
 };
@@ -27,9 +27,8 @@ function ReviewForm({ offerId }: ReviewFormProps) {
   comment.length >= MIN_COMMENTS_LENGTH &&
   comment.length <= MAX_COMMENTS_LENGTH &&
   rating !== '';
-]
-  // const isSending = sendingStatus === RequestStatus.Pending;
 
+  const isSending = sendingStatus === RequestStatus.Pending;
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
@@ -60,7 +59,6 @@ function ReviewForm({ offerId }: ReviewFormProps) {
   const handleTextAreaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(evt.target.value);
   };
-
   return (
     <form className="reviews__form form"
       action="#"
@@ -79,16 +77,17 @@ function ReviewForm({ offerId }: ReviewFormProps) {
         {Object.entries(RatingMap)
           .reverse()
           .map(
-            ([key, value]) =>(
-              < Fragment key={key}>
+            ([key, value]) => (
+              <Fragment key={key}>
                 <input
                   className="form__rating-input visually-hidden"
                   name="rating"
                   defaultValue={key}
                   id={`${key}-stars`}
                   type="radio"
-                  checked={rating === value}
+                  checked={rating === key}
                   onChange={handleInputChange}
+                  disabled={isSending}
                 />
                 <label
                   htmlFor={`${key}-stars`}
@@ -110,6 +109,7 @@ function ReviewForm({ offerId }: ReviewFormProps) {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={comment}
         onChange={handleTextAreaChange}
+        disabled={isSending}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -121,7 +121,7 @@ function ReviewForm({ offerId }: ReviewFormProps) {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!isValid}
+          disabled={!isValid || isSending}
         >
             Submit
         </button>

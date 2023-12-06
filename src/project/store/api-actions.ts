@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Offer, OfferPreview, } from '../types/offers.type';
-import { Comment, CommentByOfferId } from '../types/comments.type';
+import { Offer, OfferPreview, AddToFavoritesData } from '../types/offers.type';
+import { Comment, CommentByOfferId } from '../types/Comments.type';
 import { TState, TAppDispatch } from '../types/state.type';
 import { User } from '../types/user.types';
 import { LoginData } from '../types/login-data';
@@ -32,7 +32,6 @@ const fetchOffer = createAsyncThunk<Offer, Offer['id'], TExtra>(
   `${NameSpace.Offer}/fetchOffer`,
   async(OfferId, {extra: api}) => {
     const { data } = await api.get<Offer>(`${APIRoute.Offers}/${OfferId}`);
-
     return data;
   }
 );
@@ -70,7 +69,7 @@ const fetchNearPlaces = createAsyncThunk<
     `${NameSpace.NearPlaces}/fetchNearPlaces`,
     async(offerId, { extra: api }) => {
       const { data } = await api.get<OfferPreview[]>(
-        `${APIRoute.Offers}/${offerId}${APIRoute.NearPlaces}}`
+        `${APIRoute.Offers}/${offerId}${APIRoute.NearPlaces}`
       );
 
       return data;
@@ -90,6 +89,14 @@ const fetchFavorites = createAsyncThunk<
   }
 );
 
+export const fetchToggleFavoriteAction = createAsyncThunk<OfferPreview, AddToFavoritesData, TExtra >(
+  'data/fetchToggleFavoriteAction',
+  async ({ id, status }, { extra: api }) => {
+    const { data } = await api.post<OfferPreview>(`${APIRoute.Favorite}/${id}/${status}`);
+    return data;
+  },
+);
+
 const checkAuth = createAsyncThunk<User, undefined, TExtra>(
   `${NameSpace.User}/checkAuth`,
   async(_arg, { extra: api }) => {
@@ -105,20 +112,16 @@ const login = createAsyncThunk<User, LoginData, TLogin>(
     const { data } = await api.post<User>(APIRoute.Login, loginData);
     saveToken(data.token);
 
-    return data; // надо возвращать?
-
+    return data;
   }
 );
 
-// что сюда пишем?
-const dropLoginSendingStatus = createAsyncThunk<User, LoginData, TExtra>();
-
 const logout = createAsyncThunk<void, undefined, TExtra>(
   `${NameSpace.User}/logout`,
-  (_arg, { extra: api }) => {
-    api.delete(APIRoute.Logout);
+  async (_arg, { extra: api }) => {
+    await api.delete(APIRoute.Logout);
     dropToken();
   }
 );
 
-export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout, dropLoginSendingStatus };
+export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout };

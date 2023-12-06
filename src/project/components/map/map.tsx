@@ -58,14 +58,11 @@ function Map({ location, offers, specialOfferId }:TMapProps) {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
 
-      //создание отдельного маркера
       offers.forEach((offer) => {
         const marker = new Marker ({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
         });
-
-        //ставим иконку
         marker
           .setIcon(
             offer.id === specialOfferId
@@ -90,6 +87,7 @@ function Map({ location, offers, specialOfferId }:TMapProps) {
         maxWidth: '1140px',
         margin: '0 auto',
       }}
+      className='map'
       ref={mapRef}
     >
     </div>
