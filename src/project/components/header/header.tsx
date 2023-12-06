@@ -10,7 +10,6 @@ function Header() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const favorites = useAppSelector((state) => state.favorites);
   const favoritesStatus = useAppSelector((state) => state.favoritesFetchingStatus);
-
   const dispatch = useAppDispatch();
 
   const handleLogoutClick = () => {
@@ -44,7 +43,7 @@ function Header() {
                   <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile" >
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">{user.name}</span>
+                    <span className="header__user-name user__name">{user.email}</span>
                     <span className="header__favorite-count">{favorites.length}</span>
                   </Link>
                   :
@@ -59,7 +58,7 @@ function Header() {
                 <li className="header__nav-item">
                   <Link
                     className="header__nav-link"
-                    to={'/'}
+                    to={AppRoute.Login}
                     onClick={handleLogoutClick}
                   >
                     <span className="header__signout">Sign out</span>

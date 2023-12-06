@@ -4,17 +4,16 @@ import { TSorting } from '../types/sorting.type';
 
 const STARS_COUNT = 5;
 
-function getGetRatingWidth(rating: number) {
-  return `${100 * rating / STARS_COUNT}%`;
+function getRatingWidth(rating: number) {
+  return `${100 * Math.round(rating) / STARS_COUNT}%`;
 }
 
 function sortByRating(a:OfferPreview, b:OfferPreview) {
-  return a.rating - b.rating;
+  return b.rating - a.rating;
 }
 
 function sortLowToHigh(a:OfferPreview, b:OfferPreview) {
-  return a.price -
-  b.price;
+  return a.price - b.price;
 }
 
 function sortHighToLow(a:OfferPreview, b:OfferPreview) {
@@ -30,4 +29,4 @@ const sorting: Record<TSorting, (offers:OfferPreview[]) => OfferPreview[]> =
 };
 
 
-export {sorting, getGetRatingWidth };
+export {sorting, getRatingWidth };

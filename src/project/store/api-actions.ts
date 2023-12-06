@@ -32,7 +32,6 @@ const fetchOffer = createAsyncThunk<Offer, Offer['id'], TExtra>(
   `${NameSpace.Offer}/fetchOffer`,
   async(OfferId, {extra: api}) => {
     const { data } = await api.get<Offer>(`${APIRoute.Offers}/${OfferId}`);
-
     return data;
   }
 );
@@ -113,12 +112,9 @@ const login = createAsyncThunk<User, LoginData, TLogin>(
     const { data } = await api.post<User>(APIRoute.Login, loginData);
     saveToken(data.token);
 
-    return data; // надо возвращать? Надо, так как ты определила тип payload как User, эти данные ты потом записываешь в стор
+    return data;
   }
 );
-
-// что сюда пишем?
-const dropLoginSendingStatus = createAsyncThunk<User, LoginData, TExtra>();
 
 const logout = createAsyncThunk<void, undefined, TExtra>(
   `${NameSpace.User}/logout`,
@@ -128,4 +124,4 @@ const logout = createAsyncThunk<void, undefined, TExtra>(
   }
 );
 
-export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout, dropLoginSendingStatus };
+export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout };

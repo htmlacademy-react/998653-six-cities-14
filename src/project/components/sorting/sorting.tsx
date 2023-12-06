@@ -45,7 +45,7 @@ function Sorting ({ activeSorting, onChange }: SortingProps) {
         tabIndex={0}
         onClick={handleTypeClick}
       >
-        {SortingMap[activeSorting]}
+        {` ${SortingMap[activeSorting]} `}
         <svg
           className="places__sorting-arrow"
           width="7"

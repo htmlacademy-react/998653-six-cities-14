@@ -7,8 +7,7 @@ type FavoritesListProps = {
 };
 
 function FavoritesList ({offers}: FavoritesListProps){
-  //избранные офферы для активного города
-  const CitiesList = [...new Set(offers.map((offer) => offer.city.name))].sort();
+  const CitiesList = [...new Set(offers.map((offer) => offer.city.name))];
 
   return(
     <ul className="favorites__list">

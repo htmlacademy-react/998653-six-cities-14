@@ -3,7 +3,7 @@ import {AppRoute, AuthorizationStatus} from '../../const/const';
 import { useAppSelector } from '../../hooks';
 
 type TProtectedRoute = {
-  restrictedFor: AuthorizationStatus;
+  restrictedFor: AuthorizationStatus[];
   redirectTo: AppRoute;
   children: JSX.Element;
 }
@@ -15,7 +15,7 @@ function ProtectedRoute({
 }:TProtectedRoute) {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  return restrictedFor === authorizationStatus ? (
+  return restrictedFor.includes(authorizationStatus) ? (
     <Navigate to={redirectTo} />
   ) : (
     children

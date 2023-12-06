@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
 import { FavoritesList } from '../../components/favorites-list/favorites-list';
-import { RequestStatus } from '../../const/const';
+import { AuthorizationStatus, RequestStatus } from '../../const/const';
 import { SpinnerComponent } from '../../components/spinner/spinner';
 import { FavoritesEmptyPage } from './favorites-empty';
 
@@ -12,12 +12,15 @@ import { FavoritesEmptyPage } from './favorites-empty';
 function FavoritePage(){
   const favorites = useAppSelector((state) => state.favorites);
   const favoritesStatus = useAppSelector((state) => state.favoritesFetchingStatus);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [dispatch]);
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavorites());
+    }
+  }, [authorizationStatus, dispatch]);
 
   if (favoritesStatus === RequestStatus.Pending) {
     return <SpinnerComponent />;

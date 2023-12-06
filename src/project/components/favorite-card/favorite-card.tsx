@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import { OfferPreview } from '../../types/offers.type';
 import { useToggleFavorite } from '../../hooks/use-toggle-favorite';
 import { AppRoute } from '../../const/const';
+import { getRatingWidth } from '../../utils/offer';
 
 type FavoriteCardProps = {
   offer: OfferPreview;
 }
 
 function FavoriteCard({offer} :FavoriteCardProps) {
-  const{ id, isPremium, previewImage, price, isFavorite, title, type } = offer;
+  const{ id, isPremium, previewImage, price, isFavorite, title, type, rating } = offer;
   const handleFavoriteButtonClick = useToggleFavorite(id, isFavorite);
 
   const FavoriteLabel = `${isFavorite ? 'In' : 'To' }bookmarks`;
@@ -54,7 +55,7 @@ function FavoriteCard({offer} :FavoriteCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '100%' }} />
+            <span style={{ width: getRatingWidth(rating) }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

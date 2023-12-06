@@ -55,8 +55,8 @@ const OFFER_TYPES = [
   'Cursed old house',
 ] as const;
 
-const MAX_COMMENTS_LENGTH = 1024;
-const MIN_COMMENTS_LENGTH = 12;
+const MAX_COMMENTS_LENGTH = 300;
+const MIN_COMMENTS_LENGTH = 50;
 const MAX_REVIEWS_COUNT = 10;
 const MAX_NEAR_PLACES_COUNT = 3;
 const TIMEOUT_SHOW_ERROR = 2000;
@@ -114,8 +114,8 @@ const CityMap: Record<string, City> = {
 
 const SortingMap = {
   Popular: 'Popular',
-  LowToHigh: 'Price low to high',
-  HighToLow: 'Price high to low',
+  LowToHigh: 'Price: low to high',
+  HighToLow: 'Price: high to low',
   TopRated: 'Top rated first'
 
 } as const;

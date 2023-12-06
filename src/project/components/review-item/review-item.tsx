@@ -1,4 +1,5 @@
 import { Comment } from '../../types/Comments.type';
+import { getRatingWidth } from '../../utils/offer';
 const dateFormatter = new Intl.DateTimeFormat(
   'en-Us',
   {
@@ -30,7 +31,7 @@ function ReviewItem({review}:ReviewItemProps) {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: `${20 * rating}%` }} />
+            <span style={{ width: getRatingWidth(rating) }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

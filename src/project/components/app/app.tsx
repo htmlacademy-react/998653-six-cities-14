@@ -11,14 +11,13 @@ import { FavoritePage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/index';
-import { checkAuth, fetchOffers } from '../../store/api-actions';
+import { checkAuth } from '../../store/api-actions';
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(fetchOffers());
   }, [dispatch]);
 
   return (
@@ -35,7 +34,7 @@ function App() {
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth}
+                restrictedFor={[AuthorizationStatus.Auth]}
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />
@@ -46,7 +45,7 @@ function App() {
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.NoAuth}
+                restrictedFor={[AuthorizationStatus.NoAuth]}
                 redirectTo={AppRoute.Login}
               >
                 <FavoritePage/>
