@@ -47,7 +47,7 @@ function Cities ({offers, selectedCity }: CitiesProps) {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found"> {offers.length} places to stay in {selectedCity.name}</b>
+          <b className="places__found"> {offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {selectedCity.name}</b>
           <Sorting
             activeSorting={activeSortItem}
             onChange={handleSortOffers}

@@ -25,7 +25,7 @@ function useMap (
       });
 
 
-      const layer = new TileLayer(TILE_LAYER,{
+      new TileLayer(TILE_LAYER,{
         attribution: COPY_RIGHT
       })
         .addTo(instance);

@@ -1,4 +1,5 @@
 import { Comment } from '../../types/Comments.type';
+import { getRatingWidth } from '../../utils/offer';
 const dateFormatter = new Intl.DateTimeFormat(
   'en-Us',
   {
@@ -12,7 +13,7 @@ type ReviewItemProps= {
 };
 
 function ReviewItem({review}:ReviewItemProps) {
-  const {user, comment, date} = review;
+  const {user, comment, date, rating} = review;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -30,7 +31,7 @@ function ReviewItem({review}:ReviewItemProps) {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: '80%' }} />
+            <span style={{ width: getRatingWidth(rating) }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -38,7 +39,7 @@ function ReviewItem({review}:ReviewItemProps) {
           {comment}
         </p>
         <time className="reviews__time" dateTime={date}>
-          {dateFormatter.format(new Date())}
+          {dateFormatter.format(new Date(date))}
         </time>
       </div>
     </li>
