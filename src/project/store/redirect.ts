@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { Middleware } from 'redux';
-import { reducer } from '../store/reducer';
+import { reducer } from './reducer';
 import { browserHistory } from '../browser-history';
 
 type Reducer = ReturnType<typeof reducer>;

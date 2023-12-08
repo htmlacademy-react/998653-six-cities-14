@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, RequestStatus } from '../../const/const';
 import { useAppSelector, useAppDispatch} from '../../hooks';
-import { Logo } from '../../components/logo/logo';
+import { Logo } from '../logo/logo';
 import { fetchFavorites, logout } from '../../store/api-actions';
 import { useEffect } from 'react';
 

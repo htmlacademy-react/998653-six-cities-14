@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import {browserHistory} from '../../browser-history';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
 import { ProtectedRoute } from '../protected-route/protected-route';
@@ -12,6 +12,7 @@ import { OfferPage } from '../../pages/offer-page/offer-page';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/index';
 import { checkAuth } from '../../store/api-actions';
+import React from 'react';
 
 function App() {
   const dispatch = useAppDispatch();

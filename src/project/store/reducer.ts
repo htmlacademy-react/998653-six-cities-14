@@ -4,7 +4,7 @@ import { Comment } from '../types/Comments.type';
 import { User } from '../types/user.types';
 import { CityMap, AuthorizationStatus, RequestStatus } from '../const/const';
 import { dropReviewSendingStatus, dropOffer, setActiveCity } from './actions';
-import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout, fetchToggleFavoriteAction } from '../store/api-actions';
+import { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout, fetchToggleFavoriteAction } from './api-actions';
 
 
 const initialState: {
