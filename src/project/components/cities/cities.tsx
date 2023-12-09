@@ -1,6 +1,6 @@
 import { PlaceCardComponent } from '../place-card/place-card';
 import { City, OfferPreview } from '../../types/offers.type';
-import { useState } from 'react';
+import { useState, useCallback} from 'react';
 import { Map } from'../map/map';
 import { Sorting } from '../sorting/sorting';
 import { TSorting } from '../../types/sorting.type';
@@ -15,9 +15,11 @@ type CitiesProps = {
 function Cities ({offers, selectedCity }: CitiesProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreview['id'] | null >(null);
 
-  const handleCardHover = (offerId: OfferPreview['id'] | null) => {
-    setHoveredOfferId(offerId);
-  };
+  const handleCardHover = useCallback(
+    (offerId: OfferPreview['id'] | null) => {
+      setHoveredOfferId(offerId);
+    }, []
+  );
 
   const [activeSortItem, setActiveSortItem] = useState<TSorting>(SortingMap.Popular);
 

@@ -12,7 +12,7 @@ import { OfferPage } from '../../pages/offer-page/offer-page';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/index';
 import { checkAuth } from '../../store/api-actions';
-import React from 'react';
+
 
 function App() {
   const dispatch = useAppDispatch();
