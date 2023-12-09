@@ -5,7 +5,7 @@ import { ReviewList } from '../../components/review-list/review-list';
 import classNames from 'classnames';
 import { Map } from '../../components/map/map';
 import { SpinnerComponent } from '../../components/spinner/spinner';
-import { PlaceCardComponent } from '../../components/place-card/place-card';
+import { PlaceCardMemo } from '../../components/place-card/place-card';
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch} from '../../hooks/index';
 import { MAX_NEAR_PLACES_COUNT, RequestStatus } from '../../const/const';
@@ -157,7 +157,7 @@ function OfferPage() {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 {nearPlacesToRender.map((offerPreview) => (
-                  <PlaceCardComponent
+                  <PlaceCardMemo
                     offer={offerPreview}
                     key={offerPreview.id}
                     className='near-places__card'

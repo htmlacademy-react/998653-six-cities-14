@@ -1,4 +1,4 @@
-import { PlaceCardComponent } from '../place-card/place-card';
+import { PlaceCardMemo } from '../place-card/place-card';
 import { City, OfferPreview } from '../../types/offers.type';
 import { useState, useCallback} from 'react';
 import { Map } from'../map/map';
@@ -56,7 +56,7 @@ function Cities ({offers, selectedCity }: CitiesProps) {
           />
           <div className="cities__places-list places__list tabs__content">
             {sortedOffers.map((offer) => (
-              <PlaceCardComponent
+              <PlaceCardMemo
                 offer={offer}
                 key={offer.id}
                 onCardHover={handleCardHover}

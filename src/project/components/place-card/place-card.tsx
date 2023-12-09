@@ -1,8 +1,9 @@
-import { OfferPreview } from '../../types/offers.type';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 import classNames from 'classnames';
 import { useToggleFavorite } from '../../hooks/use-toggle-favorite';
+import { OfferPreview } from '../../types/offers.type';
 import { getRatingWidth } from '../../utils/offer';
 
 type PlaceCardComponentProps = {
@@ -82,4 +83,5 @@ function PlaceCardComponent({ offer, onCardHover, className }: PlaceCardComponen
   );
 }
 
-export { PlaceCardComponent };
+const PlaceCardMemo = memo(PlaceCardComponent);
+export { PlaceCardMemo };
