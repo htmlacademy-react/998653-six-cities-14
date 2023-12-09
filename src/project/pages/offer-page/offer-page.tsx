@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../../components/header/header';
@@ -172,4 +173,5 @@ function OfferPage() {
 
   );
 }
-export { OfferPage };
+const OfferPageMemo = memo(OfferPage);
+export { OfferPageMemo };

@@ -1,8 +1,8 @@
+import { useState, useCallback, useMemo} from 'react';
 import { PlaceCardMemo } from '../place-card/place-card';
 import { City, OfferPreview } from '../../types/offers.type';
-import { useState, useCallback} from 'react';
 import { Map } from'../map/map';
-import { Sorting } from '../sorting/sorting';
+import { SortingMemo } from '../sorting/sorting';
 import { TSorting } from '../../types/sorting.type';
 import { SortingMap } from '../../const/const';
 import { sorting } from '../../utils/offer';
@@ -12,7 +12,7 @@ type CitiesProps = {
   selectedCity: City;
 }
 
-function Cities ({offers, selectedCity }: CitiesProps) {
+function Cities ({ selectedCity, offers }: CitiesProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<OfferPreview['id'] | null >(null);
 
   const handleCardHover = useCallback(
@@ -21,28 +21,33 @@ function Cities ({offers, selectedCity }: CitiesProps) {
     }, []
   );
 
-  const [activeSortItem, setActiveSortItem] = useState<TSorting>(SortingMap.Popular);
+  const [activeSorting, setActiveSorting] = useState<TSorting>(SortingMap.Popular);
 
-  const getSortingOffers = (label: TSorting) => {
-    switch (label) {
-      case 'HighToLow':
-        return sorting.HighToLow(offers);
-      case 'LowToHigh':
-        return sorting.LowToHigh(offers);
-      case 'TopRated':
-        return sorting.TopRated(offers);
-      case 'Popular':
-      default:
-        return sorting.Popular(offers);
-    }
-  };
+  // const getSortingOffers = (label: TSorting) => {
+  //   switch (label) {
+  //     case 'HighToLow':
+  //       return sorting.HighToLow(offers);
+  //     case 'LowToHigh':
+  //       return sorting.LowToHigh(offers);
+  //     case 'TopRated':
+  //       return sorting.TopRated(offers);
+  //     case 'Popular':
+  //     default:
+  //       return sorting.Popular(offers);
+  //   }
+  // };
 
-  let sortedOffers: OfferPreview[] = getSortingOffers(activeSortItem);
+  // let sortedOffers: OfferPreview[] = getSortingOffers(activeSortItem);
 
-  const handleSortOffers = (label: TSorting) => {
-    sortedOffers = getSortingOffers(label);
-    setActiveSortItem(label);
-  };
+  const sortedOffers = useMemo(
+    () => sorting[activeSorting](offers),[activeSorting, offers]
+  );
+
+  const handleSortOffers = useCallback(
+    (newSorting) => setActiveSorting(newSorting),
+    []
+  );
+
 
   return (
     <div className="cities">
@@ -50,8 +55,8 @@ function Cities ({offers, selectedCity }: CitiesProps) {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found"> {offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {selectedCity.name}</b>
-          <Sorting
-            activeSorting={activeSortItem}
+          <SortingMemo
+            activeSorting={activeSorting}
             onChange={handleSortOffers}
           />
           <div className="cities__places-list places__list tabs__content">
