@@ -3,7 +3,7 @@ import { TFavoritesData, TState } from '../../types/state.type';
 import { NameSpace } from '../../const/const';
 
 const getFavorites = createSelector(
-  (state: TState) => state[NameSpace.Favorites],
+  (state: TState) => state[NameSpace.Favorites], // из  примера академии
   (state: TFavoritesData) => state.favorites
 );
 
