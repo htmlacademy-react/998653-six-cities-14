@@ -1,6 +1,6 @@
 import { Comment } from '../../types/Comments.type';
-import { ReviewItem } from '../../components/review-item/review-item';
-import { ReviewForm } from '../../components/review-form/review-form';
+import { ReviewItem } from '../review-item/review-item';
+import { ReviewForm } from '../review-form/review-form';
 import { AuthorizationStatus, MAX_REVIEWS_COUNT } from '../../const/const';
 import { Offer } from '../../types/offers.type';
 import { useAppSelector } from '../../hooks';

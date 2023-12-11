@@ -89,13 +89,14 @@ const fetchFavorites = createAsyncThunk<
   }
 );
 
-export const fetchToggleFavoriteAction = createAsyncThunk<OfferPreview, AddToFavoritesData, TExtra >(
+const fetchToggleFavoriteAction = createAsyncThunk<OfferPreview, AddToFavoritesData, TExtra >(
   'data/fetchToggleFavoriteAction',
   async ({ id, status }, { extra: api }) => {
     const { data } = await api.post<OfferPreview>(`${APIRoute.Favorite}/${id}/${status}`);
     return data;
   },
 );
+
 
 const checkAuth = createAsyncThunk<User, undefined, TExtra>(
   `${NameSpace.User}/checkAuth`,
@@ -124,4 +125,4 @@ const logout = createAsyncThunk<void, undefined, TExtra>(
   }
 );
 
-export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, checkAuth, login, logout };
+export { fetchOffers, fetchOffer, fetchReviews, postRewiew, fetchNearPlaces, fetchFavorites, fetchToggleFavoriteAction, checkAuth, login, logout };

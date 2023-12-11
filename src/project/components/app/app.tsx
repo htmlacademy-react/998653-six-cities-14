@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import {browserHistory} from '../../browser-history';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
 import { ProtectedRoute } from '../protected-route/protected-route';
@@ -8,10 +8,11 @@ import { MainPage } from '../../pages/main-page/main-page';
 import { NotFoundPage } from '../../pages/404-page/404-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { FavoritePage } from '../../pages/favorites-page/favorites-page';
-import { OfferPage } from '../../pages/offer-page/offer-page';
+import { OfferPageMemo } from '../../pages/offer-page/offer-page';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/index';
 import { checkAuth } from '../../store/api-actions';
+
 
 function App() {
   const dispatch = useAppDispatch();
@@ -56,7 +57,7 @@ function App() {
           <Route
             path={`${AppRoute.Offer}/:offerId`}
             element={
-              <OfferPage/>
+              <OfferPageMemo/>
             }
           />
           <Route
